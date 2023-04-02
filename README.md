@@ -1,6 +1,6 @@
 # Embedded_SWE_Prep
 
-List of questions(I am not the creator of this list. Credits to the original creator(s)!):
+I am not the creator of this list. Credits to the original creator(s):
 
 Linked list
 -----------------
