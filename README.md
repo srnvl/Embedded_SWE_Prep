@@ -86,53 +86,53 @@ Bit Manipulation
 
 Embedded specific
 ------------------------------
-Boot sequence
-Causes of segmentation fault and how to overcome it
-Differences between fault, abort and trap
-Compiler, assembler, linker, loader
-Volatile, pre processor, pragmas, const
-Fine grained vs coarse grained multithreading
-Virtual memory, paging, thread vs process
-Implement mutex using test and set, load linked and store conditional, 
-Mutex vs semaphore
-Reader writer mutex
-Producer consumer
-Strict padding alignment
-Endianess - program to figure out the endianess, concert from big endian to little endian
-Implement memcpy, memmove, strstr, strcpy, atoi,  malloc, free etc (all those standard library operations)
-Aligned malloc
-VIPT, TLBs , page faults
-Interrupts, exceptions, deadlocks, priroity inversion and inheritance
-HW breakpoint vs SW breakpoint
-SPI vs UART vs I2C
-Matrix multiplication, cache blocking, tiling, Gemm, rotation of matrices etc
-Bankers Algo, buddy system memory allocation, inverted paging
-Spinlocks, conditional variable
-Task scheduling, thrashing, cycle stealing, race conditions 
-Queues, FIFO, Mailbox,
-Belady anomaly, philosopher dining problem
-Security : digital signing, hash, encryption
-Firmware update
-Unit testing vs integration testing
-RTOS vs bare metal
-HW timer : given HW timer, build an API to implemt a SW timer
-Function pointers and callbacks
+1. Boot sequence
+2. Causes of segmentation fault and how to overcome it
+3. Differences between fault, abort and trap
+4. Compiler, assembler, linker, loader
+5. Volatile, pre processor, pragmas, const
+6. Fine grained vs coarse grained multithreading
+7. Virtual memory, paging, thread vs process
+8. Implement mutex using test and set, load linked and store conditional, 
+9. Mutex vs semaphore
+10. Reader writer mutex
+11. Producer consumer
+12. Strict padding alignment
+13. Endianess - program to figure out the endianess, concert from big endian to little endian
+14. Implement memcpy, memmove, strstr, strcpy, atoi,  malloc, free etc (all those standard library operations)
+15. Aligned malloc
+16. VIPT, TLBs , page faults
+17. Interrupts, exceptions, deadlocks, priroity inversion and inheritance
+18. HW breakpoint vs SW breakpoint
+19. SPI vs UART vs I2C
+20. Matrix multiplication, cache blocking, tiling, Gemm, rotation of matrices etc
+21. Bankers Algo, buddy system memory allocation, inverted paging
+22. Spinlocks, conditional variable
+23. Task scheduling, thrashing, cycle stealing, race conditions 
+24. Queues, FIFO, Mailbox,
+25. Belady anomaly, philosopher dining problem
+26. Security : digital signing, hash, encryption
+27. Firmware update
+28. Unit testing vs integration testing
+29. RTOS vs bare metal
+30. HW timer : given HW timer, build an API to implemt a SW timer
+31. Function pointers and callbacks
 
 C++
 ------
-New, delete
-OOPS theory - Abstraction, inheritance, polymorphism and encapsulation 
-Inline
-Virtual functions, vptr and vtable
-Friend class and function
-Virtual base class, abstract class
-Fucntion pointers 
-Templates, template specialization, object slicing
-Deep vs shallow copy
-Copy constructors, constructor vs destructor
-Overloading vs overriding operations
-Different types of casting
-Static keyword, static fucntion
-Pointers vs references
-lvalue and rvalue
-Smart pointers
+1. New, delete
+2. OOPS theory - Abstraction, inheritance, polymorphism and encapsulation 
+3. Inline
+4. Virtual functions, vptr and vtable
+5. Friend class and function
+6. Virtual base class, abstract class
+7. Function pointers 
+8. Templates, template specialization, object slicing
+9. Deep vs shallow copy
+10. Copy constructors, constructor vs destructor
+11. Overloading vs overriding operations
+12. Different types of casting
+13. Static keyword, static fucntion
+14. Pointers vs references
+15. lvalue and rvalue
+16. Smart pointers
