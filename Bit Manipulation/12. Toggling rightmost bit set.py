@@ -15,7 +15,7 @@ Output: 6 (00...00110)
 
 def TogglingRightmostBitSet(n):
     n = n & (n - 1)
-    n = bin(n)
+    # n = bin(n)
     return n
 
 n = 7
