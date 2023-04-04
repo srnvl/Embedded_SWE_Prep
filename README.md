@@ -2,6 +2,10 @@
 
 I am not the creator of this list. Credits to the original creator(s):
 
+I am also linking the problems from Grind75(https://www.techinterviewhandbook.org/grind75?order=difficulty&grouping=topics&hours=40&weeks=3&difficulty=Easy&difficulty=Medium).
+Note: The filter of the website is set to Easy and Medium problems (143 problems in all from this website itself).
+Some problems from Grind 75 overlap with the ones that have been listed below. I have marked them as G75.
+
 Linked list
 -----------------
 1. Determine if there is a cycle or not
