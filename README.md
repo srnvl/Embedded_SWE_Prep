@@ -78,8 +78,8 @@ Bit Manipulation
 3. Set, clear and toggle i'th bit
 4. Find position of the only bit that is set
 5. Count no of set bits in logN time
-6. Add 2 nos without arithmetic operators
-7. Find the only no that appears once
+6. Add two nos without arithmetic operators(G75)
+7. Find the only no that appears once(G75)
 8. Set all bits in a given range
 9. Compute 2's complement
 10. Position of right most bit set
@@ -89,6 +89,7 @@ Bit Manipulation
 14. Swap 2 nos without using temporary variable
 15. Reverse the order of bits in a no
 16. Modify a bit at a given position to a 1 or a 0
+17. Missing Number(G75)
 
 Embedded specific
 ------------------------------
