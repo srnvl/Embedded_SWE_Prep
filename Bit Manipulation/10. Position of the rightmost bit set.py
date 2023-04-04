@@ -15,13 +15,15 @@ Examples:
 
 '''
 
+import math
+
 def positionOfRightMostSetBit(n):
     n = n & ~(n - 1)
-    n = bin(n)
+    # print(n)
+    n = math.log2(n)+1
+    # print(n)
     return n
-
-
-n = 18
+    
+n = 44
 pos = positionOfRightMostSetBit(n)
 print(pos)
-    
