@@ -35,9 +35,10 @@ def HammingWeight(n):
     count = count + 1
   return count
 
-h1 = HammingWeight(00000000000000000000000000001011)
-h2 = HammingWeight(00000000000000000000000010000000)
-h3 = HammingWeight(11111111111111111111111111111101)
+h1 = HammingWeight(9)
+h2 = HammingWeight(21)
+h3 = HammingWeight(76)
 print(h1)
 print(h2)
 print(h3)
+# This is also called Brian Kernighan's Algorthim to find the count of one bits
