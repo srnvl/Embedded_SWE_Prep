@@ -90,6 +90,9 @@ Bit Manipulation
 15. Reverse the order of bits in a no
 16. Modify a bit at a given position to a 1 or a 0
 17. Missing Number(G75)
+18. Number of 1 bits(G75) 
+19. Counting bits(G75)
+20. Find the duplicate number(G75)
 
 Embedded specific
 ------------------------------
