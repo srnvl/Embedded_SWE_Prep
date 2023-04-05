@@ -22,7 +22,7 @@ Examples :
 
 def reverseBits(n):
     rev = 0
-    while(n > 0):
+    for in in range(32):
         rev = rev << 1
         if(n & 1 == 1):
             rev = rev ^ 1
