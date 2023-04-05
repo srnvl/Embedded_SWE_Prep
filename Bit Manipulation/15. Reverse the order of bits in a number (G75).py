@@ -23,7 +23,7 @@ Examples :
 def reverseBits(n):
     rev = 0
     for in in range(32):
-        rev = rev << 1
+        rev = rev << 1 # Reversal logic to XOR with 1 in later stage
         if(n & 1 == 1):
             rev = rev ^ 1
         n = n >> 1
