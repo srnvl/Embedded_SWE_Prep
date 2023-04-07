@@ -53,10 +53,10 @@ Hashmap
 
 Stack
 --------------
-1. Implement Stack as an Array
-2. Implement Stack as a Linked List
-3. Implement Stack as a Queue (G75) 
-4. Valid(Balanced) Parentheses (G75)
+1. Implement Stack using an Array
+2. Implement Stack using a Linked List
+3. Implement Queue using Stack (G75) 
+4. Valid (Balanced) Parentheses (G75)
 5. Backspace String Compare (G75)
 6. Evaluate Reverse Polish Notation (G75)
 7. Min Stack (G75)
@@ -68,7 +68,11 @@ Stack
 
 Queue
 --------------
-1. Implement Queue as an Array
+1. Implement Queue using an Array
+2. Implement Queue using a Linked List
+3. Implement Stack using Queue
+4. Circular (Ring) buffer
+5. Design Hit Counter(G75)
 
 Sorting
 -----------
