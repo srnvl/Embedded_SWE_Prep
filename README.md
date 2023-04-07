@@ -51,12 +51,24 @@ Hashmap
 9. Longest substring without repeating characters
 10. LRU cache 
 
-Stack and Queue
+Stack
 --------------
-1. Stack and Queue - implement as an array and linked list,
-2. Implement stack using queues and queue using stacks
-3. Valid parentheses
-4. Circular buffer/Ring buffer
+1. Implement Stack as an Array
+2. Implement Stack as a Linked List
+3. Implement Stack as a Queue (G75) 
+4. Valid(Balanced) Parentheses (G75)
+5. Backspace String Compare (G75)
+6. Evaluate Reverse Polish Notation (G75)
+7. Min Stack (G75)
+8. Daily Temperature (G75)
+9. Decode String (G75)
+10. Asteroid Collision (G75)
+11. Basic Calculator II (G75)
+12. Trapping Rain Water (G75)
+
+Queue
+--------------
+1. Implement Queue as an Array
 
 Sorting
 -----------
