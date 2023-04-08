@@ -49,7 +49,7 @@ Hashmap
 7. Group anagrams
 8. Valid Sudoku
 9. Longest substring without repeating characters
-10. LRU cache 
+10. LRU cache G75)
 
 Stack
 --------------
