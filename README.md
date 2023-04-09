@@ -40,7 +40,7 @@ Arrays
 
 Hashmap
 ---------------
-1. 2 sum (return indices of 2 numbers such that they add up to a specific target)
+1. 2 sum (return indices of 2 numbers such that they add up to a specific target) (G75)
 2. 4 sum
 3. Find all duplicates
 4. Intersection of 2 arrays
@@ -50,6 +50,8 @@ Hashmap
 8. Valid Sudoku
 9. Longest substring without repeating characters
 10. LRU cache (G75)
+11. Ransom Note (G75)
+12. Insert Delete GetRandom O(1)
 
 Stack
 --------------
