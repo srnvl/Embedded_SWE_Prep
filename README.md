@@ -51,7 +51,7 @@ Hashmap
 9. Longest substring without repeating characters
 10. LRU cache (G75)
 11. Ransom Note (G75)
-12. Insert Delete GetRandom O(1)
+12. Insert Delete GetRandom O(1) (G75)
 
 Stack
 --------------
