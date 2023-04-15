@@ -18,7 +18,7 @@ Constraints:
     1 <= nums.length <= 104
     -2^31 <= nums[i] <= 2^31 - 1
 
-/*
+*/
 
 #include <iostream>
 #include <vector>
