@@ -33,11 +33,21 @@ using namespace std;
 class Solution {
 public:
     int strStr(string haystack, string needle) {
-        size_t found = haystack.find(needle);     //// We use find() function which is of type size_t to return the index. size_t means that the number is very big, around upto 32 bit and is unsigned.
-        if(found != string::npos) 
-          // If the substring is not found, the find() function returns string::npos, which is a special value indicating that the substring was not found.
+        // size_t found = haystack.find(needle);     //// We use find() function which is of type size_t to return the index. size_t means that the number is very big, around upto 32 bit and is unsigned.
+        // if(found != string::npos) 
+        //   // If the substring is not found, the find() function returns string::npos, which is a special value indicating that the substring was not found.
+        // {
+        //     return found;
+        // }
+        // return -1;
+     // Alternate solution:
+        int n = needle.size();
+        for(int i = 0; i < haystack.size(); i++)
         {
-            return found;
+            if(haystack[i] == needle[0] && haystack.substr(i, n) == needle)
+            {
+                return i;
+            }
         }
         return -1;
     }
