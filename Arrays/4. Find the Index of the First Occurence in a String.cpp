@@ -40,7 +40,7 @@ public:
         //     return found;
         // }
         // return -1;
-     // Alternate solution:
+     // Alternate solution with faster time:
         int n = needle.size();
         for(int i = 0; i < haystack.size(); i++)
         {
