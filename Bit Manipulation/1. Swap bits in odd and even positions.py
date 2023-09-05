@@ -23,8 +23,8 @@ def swap_bits(num):
     
     # Shift to swap the positions of even bits and odd bits
     
-    even_bits >>= 1
-    odd_bits <<= 1
+    even_bits <<= 1
+    odd_bits >>= 1
 
     swapped_num = even_bits | odd_bits
 
