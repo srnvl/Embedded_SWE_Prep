@@ -52,6 +52,7 @@ Hashmap
 10. LRU cache (G75)
 11. Ransom Note (G75)
 12. Insert Delete GetRandom O(1) (G75)
+13. Design Hashmap
 
 Stack
 --------------
