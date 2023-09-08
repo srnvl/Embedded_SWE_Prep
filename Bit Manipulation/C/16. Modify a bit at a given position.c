@@ -2,8 +2,8 @@
 
 int modifyBit(int n, int p, int b)
 {
-    mask = 1 << p;
-    n = (n & ~mask) | (b << p);
+    int mask = 1 << p;
+    int n = (n & ~mask) | (b << p);
     return n;
 }
 
