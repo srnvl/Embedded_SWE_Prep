@@ -3,7 +3,7 @@
 int modifyBit(int n, int p, int b)
 {
     int mask = 1 << p;
-    int n = (n & ~mask) | (b << p);
+    n = (n & ~mask) | (b << p);
     return n;
 }
 
