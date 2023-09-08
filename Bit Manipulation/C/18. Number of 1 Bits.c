@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 int hammingWeight(uint_t n)
 {  
   int count = 0;
@@ -7,4 +9,13 @@ int hammingWeight(uint_t n)
     count++;
   }
   return count;
+}
+
+int main()
+{
+  printf("Enter a value for n: );
+  scanf("%d", &n);
+  int count = hammingWeight(n);
+  printf("No. of 1 bits is: %d, count);
+  return 0;
 }
