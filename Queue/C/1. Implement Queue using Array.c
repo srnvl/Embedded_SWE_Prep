@@ -1,115 +1,93 @@
-// Implement queue using array
+// queue as array
 
-# include <stdio.h>
-# include <stdlib.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
 
-# define MAX_SIZE 100
+#define MAX_SIZE 100
 
-struct Queue{
-    int front, rear, size;
-    int array[MAX_SIZE];
+struct ArrayQueue{
+    int front;
+    int rear;
+    int arr[MAX_SIZE];
 };
 
-// function to create a queue
-
-struct Queue* createQueue()
+void initialize(struct ArrayQueue* queue)
 {
-    struct Queue* queue = (struct Queue*)malloc(sizeof(struct Queue));
-    if(!queue)
-    {
-        printf("Memory allocation failed");
-        exit(1);
-    }
     queue->front = -1;
     queue->rear = -1;
-    queue->size = 0;
-    return queue;
-};
-
-int isEmpty(struct Queue* queue)
-{
-    return queue->size == 0;
 }
 
-int isFull(struct Queue* queue)
+bool isEmpty(struct ArrayQueue* queue)
 {
-    return queue->size == MAX_SIZE;
+    return queue->front == -1;
 }
 
-void enQueue(struct Queue* queue, int value)
+bool isFull(struct ArrayQueue* queue)
 {
-    if (isFull(queue))
+    return (queue->rear + 1) % MAX_SIZE == queue->front;
+}
+
+void enqueue(struct ArrayQueue* queue, int data)
+{
+    if(isFull(queue))
     {
-        printf("Queue is full");
-        exit(1);
+        printf("Queue is full. Cannot enqueue element %d.\n", data);
+        return;
     }
-    if(queue->front == -1)
+    if(isEmpty(queue))
     {
+        queue->rear = 0;
         queue->front = 0;
     }
-    queue->rear = (queue->rear + 1) % MAX_SIZE;
-    queue->array[queue->rear] = value;
-    queue->size++;
-    printf("Enqueued: %d\n", value);
-}
-
-int deQueue(struct Queue* queue)
-{
-    if (isEmpty(queue))
+    else
     {
-        printf("Queue is empty");
-        exit(1);
+        queue->rear = (queue->rear + 1) % MAX_SIZE;
     }
-    queue->front = (queue->front + 1) % MAX_SIZE;
-    int value = queue->array[queue->front];
-    queue->size--;
-    return value;
+    queue->arr[queue->rear] = data;
+    printf("Enqueued %d in the queue.\n", data);
 }
 
-int size(struct Queue* queue)
+int dequeue(struct ArrayQueue* queue)
 {
-    return queue->size;
-}
-
-int front(struct Queue* queue)
-{
-    if (isEmpty(queue))
+    if(isEmpty(queue))
     {
-        printf("Queue is empty.\n");
-        exit(1);
+        printf("Queue is empty. Cannot dequeue elements.\n");
+        return -1;
     }
-    return queue->array[queue->front];
+    int data = queue->arr[queue->front];
+    if(queue->front == queue->rear)
+    {
+        queue->front = -1;
+        queue->rear = -1;
+    }
+    else
+    {
+        queue->front = (queue->front + 1) % MAX_SIZE;
+    }
+    return data;
 }
 
-void printQueue(struct Queue* queue)
+int peek(struct ArrayQueue* queue)
 {
-    int i;
-    for(i = queue->front; i <= queue->rear; i++)
-    {
-        printf("%d", queue->array[i]);
+    if (isEmpty(queue)) {
+        printf("Queue is empty. Cannot peek.\n");
+        return -1; // Return an error value
     }
-    printf("\n");
+    return queue->arr[queue->front];
 }
 
 int main()
 {
-    struct Queue* queue = createQueue();
-    enQueue(queue, 1);
-    enQueue(queue, 2);
-    enQueue(queue, 3);
-    enQueue(queue, 4);
-
-    printQueue(queue);
-    
-    printQueue(queue);
-
-    printf("Front element: %d\n", front(queue));
-    printf("Queue size: %d\n", size(queue));
-
-    printf("Dequeued: %d\n", deQueue(queue));
-    printf("Dequeued: %d\n", deQueue(queue));
-
-    printQueue(queue);
-
+    struct ArrayQueue queue;
+    initialize(&queue);
+    enqueue(&queue, 1);
+    enqueue(&queue, 2);
+    enqueue(&queue, 3);
+    enqueue(&queue, 4);
+    enqueue(&queue, 5);
+    printf("Front element is: %d\n", peek(&queue));
+    dequeue(&queue);
+    printf("Front element is: %d\n", peek(&queue));
     return 0;
 }
