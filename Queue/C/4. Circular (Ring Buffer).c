@@ -1,80 +1,66 @@
-// Implement Circular Buffer 
+// Circular buffer
 
 # include <stdio.h>
 # include <stdlib.h>
 
-# define BUFFER_SIZE 5
+# define MAX_SIZE 1000
 
-int circularBuffer[BUFFER_SIZE];
-int writePointer = 0;
-int readPointer = 0;
-int count = 0; // Keeping track of elements in buffer
+int circularBuffer[MAX_SIZE];
+int front = 0;
+int rear = 0;
 
-void addToBuffer(int num)
+int count = 0; // keeping track of elements
+
+void push(int data)
 {
-    if(count == BUFFER_SIZE) // Checking if the buffer is full or not 
+    if(count == 5)
     {
-        printf("Buffer is full! Cannot add %d to the buffer.\n", num);
-        return;
+        printf("Buffer is full.\n");
     }
-    else{
-        circularBuffer[writePointer] = num;
-        writePointer = (writePointer + 1) % BUFFER_SIZE; // Move the writePointer, but stay in the range of 0 to 4 (circular!)
-        count++; // increment count
-    }
+    circularBuffer[rear] = data;
+    rear = (rear + 1) % MAX_SIZE;
+    count++;
 }
 
-int removeFromBuffer()
-{
-    if(count == 0)   // Checking if buffer is empty or not
-    {
-        printf("Buffer is empty!");
-        return -1;
-    }
-    else{
-        int num = circularBuffer[readPointer];
-        readPointer = (readPointer + 1) % BUFFER_SIZE; // Move the readPointer, but stay in the range of 0 to 4 (circular!)
-        count--; // decrement count
-        return num;
-    }
-}
-
-void printBuffer()
+int pop()
 {
     if(count == 0)
     {
-        printf("Buffer is empty.");
-        return;
+        printf("Buffer is empty.\n");
+        return -1;
     }
-    int i = readPointer; // i is for reading
-    for(int j = 0; j < count; j++) // j is for traversing
+    int data = circularBuffer[front];
+    front = (front + 1) % MAX_SIZE;
+    count--;
+    return data;
+}
+
+void print()
+{
+    if(count == 0)
     {
-        printf("%d ", circularBuffer[i]);
-        i = (i + 1) % BUFFER_SIZE;
+        printf("Buffer is empty.\n");
+    }
+    int tempFront = front;
+    for(int i = 0; i < count; i++)
+    {
+        printf("%d ", circularBuffer[tempFront]);
+        tempFront = (tempFront + 1) % MAX_SIZE;
     }
     printf("\n");
 }
 
 int main()
 {
-    addToBuffer(10);
-    addToBuffer(20);
-    addToBuffer(30);
-    addToBuffer(40);
+    push(10);
+    push(20);
+    push(30);
+    push(40);
     
-    printBuffer();
+    print();
     
-    int num = removeFromBuffer();
-    printf("Removed %d from the buffer ", num);
-    
-    printf("\n");
-    printBuffer();
-    
-    addToBuffer(50);
-    printBuffer();
-    addToBuffer(60);
-    
-    printBuffer();
+    pop();
+    print();
     
     return 0;
 }
