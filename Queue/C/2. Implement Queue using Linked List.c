@@ -1,82 +1,65 @@
-// Implement Queue using Linked List
+// queue as linked list
 
-# include <stdio.h>
-# include <stdbool.h>
-# include <stdlib.h>
+#include<stdio.h>
+#include<stdbool.h>
+#include<stdlib.h>
 
-// Defining Node
 struct Node{
-  int data;
-  struct Node* next;
+    int data;
+    struct Node* next;
 };
 
-// Defining a Queue
-struct Queue{
+struct llQueue{
+    
     struct Node* front;
     struct Node* rear;
 };
 
-// Function to create a Queue
-struct Queue* createQueue()
+struct llQueue* createQueue()
 {
-    struct Queue* queue = (struct Queue*) malloc(sizeof(struct Queue));
-    if(!queue)
-    {
-        printf("Allocation failed!");
-        exit(1);
-    }
-    queue->front == NULL;
-    queue->rear == NULL;
+    struct llQueue* queue = (struct llQueue* )malloc(sizeof(struct llQueue));
+    queue->front = NULL;
+    queue->rear = NULL;
     return queue;
-}
+};
 
-int isEmpty(struct Queue* queue)
+bool isEmpty(struct llQueue *queue)
 {
     return queue->front == NULL;
 }
 
-void enQueue(struct Queue* queue, int data)
+void enqueue(struct llQueue *queue, int data)
 {
-    struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
+    struct Node* new_node = (struct Node* )malloc(sizeof(struct Node));
     new_node->data = data;
     new_node->next = NULL;
-    
-    // If queue is empty
-    
     if(isEmpty(queue))
     {
         queue->front = queue->rear = new_node;
-        return;
     }
     queue->rear->next = new_node;
     queue->rear = new_node;
 }
 
-int deQueue(struct Queue* queue)
+int dequeue(struct llQueue *queue)
 {
-    // If queue is empty
-    if(queue->front == NULL)
+    if(isEmpty(queue))
     {
-        printf("Queue is empty!");
+        printf("queue is empty. cannot deque\n");
         return -1;
     }
-    int data = queue->front->data;
+    
     struct Node* temp = queue->front;
+    int data = temp->data;
     queue->front = queue->front->next;
     free(temp);
     return data;
 }
 
-void printQueue(struct Queue* queue)
+void printList(struct llQueue *queue)
 {
-    if(isEmpty(queue))
-    {
-        printf("Queue is empty!");
-        return;
-    }
-    
     struct Node* temp = queue->front;
-    while(temp != NULL)
+    while(temp)
     {
         printf("%d ", temp->data);
         temp = temp->next;
@@ -84,21 +67,33 @@ void printQueue(struct Queue* queue)
     printf("\n");
 }
 
-int main()
+int peek(struct llQueue *queue)
 {
-    struct Queue* queue = createQueue();
-    enQueue(queue, 1);
-    enQueue(queue, 2);
-    enQueue(queue, 3);
-    enQueue(queue, 4);
-    enQueue(queue, 5);
+    if(isEmpty(queue))
+    {
+        printf("queue is empty.\n");
+        return -1;
+    }
+    return queue->front->data;
+}
+
+int main() {
     
-    printQueue(queue);
+    struct llQueue* queue = createQueue();
+    enqueue(queue, 10);
+    enqueue(queue, 20);
+    enqueue(queue, 30);
+    enqueue(queue, 40);
     
-    deQueue(queue);
-    deQueue(queue);
+    printList(queue);
     
-    printQueue(queue);
+    printf("Peek element is: %d\n", peek(queue));
     
+    dequeue(queue);
+    
+    printList(queue);
+    
+    printf("Peek element is: %d\n", peek(queue));
+
     return 0;
 }
