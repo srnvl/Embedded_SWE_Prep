@@ -1,69 +1,77 @@
+// stack as array
+
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 
 #define MAX_SIZE 100
 
-// Define a structure for the stack
-struct Stack {
-    int arr[MAX_SIZE];
+struct ArrayStack{          // defines what parameters to be used: Array[MAX_SIZE] and top variable
     int top;
+    int arr[MAX_SIZE];
 };
 
-// Initialize the stack
-void initialize(struct Stack *stack) {
-    stack->top = -1; // Initialize the top index to -1
+void initialize(struct ArrayStack* stack)
+{
+    stack->top = -1;
 }
 
-// Check if the stack is empty
-bool isEmpty(struct Stack *stack) {
+bool isEmpty(struct ArrayStack* stack)
+{
     return stack->top == -1;
 }
 
-// Check if the stack is full
-bool isFull(struct Stack *stack) {
-    return stack->top == MAX_SIZE - 1;
+bool isFull(struct ArrayStack* stack)
+{
+    return stack->top == MAX_SIZE;
 }
 
-// Push an element onto the stack
-void push(struct Stack *stack, int value) {
-    if (isFull(stack)) {
-        printf("Stack overflow\n");
+void push(struct ArrayStack* stack, int data)
+{
+    if(isFull(stack))
+    {
+        printf("Stack is full!");
         return;
     }
-    stack->arr[++stack->top] = value;
+    stack->arr[++stack->top] = data;
+    printf("Pushed %d in the stack.\n", data);
 }
 
-// Pop an element from the stack
-int pop(struct Stack *stack) {
-    if (isEmpty(stack)) {
-        printf("Stack underflow\n");
-        return -1; // Return an error value (you can choose a different approach)
+int pop(struct ArrayStack* stack)
+{
+    if(isEmpty(stack))
+    {
+        printf("Stack is empty!");
+        return -1;
     }
-    return stack->arr[stack->top--];
+    int data = stack->arr[stack->top--];
+    // printf("Popped %d from the stack.", data);
+    return data;
 }
 
-// Peek at the top element of the stack without removing it
-int peek(struct Stack *stack) {
-    if (isEmpty(stack)) {
-        printf("Stack is empty\n");
-        return -1; // Return an error value (you can choose a different approach)
+int peek(struct ArrayStack* stack)
+{
+    if(isEmpty(stack))
+    {
+        printf("Stack is empty!");
+        return -1;
     }
     return stack->arr[stack->top];
 }
 
-int main() {
-    struct Stack stack;
+int main()
+{
+    struct ArrayStack stack;
     initialize(&stack);
-
-    push(&stack, 1);
-    push(&stack, 2);
+    push(&stack, 4);
     push(&stack, 3);
-
-    printf("Top element: %d\n", peek(&stack));
-
-    while (!isEmpty(&stack)) {
-        printf("Popped: %d\n", pop(&stack));
-    }
-
+    push(&stack, 2);
+    push(&stack, 1);
+    
+    printf("Top value is: %d\n", peek(&stack));
+    printf("Popped value is: %d\n", pop(&stack));
+    
+    printf("Popped value is: %d\n", pop(&stack));
+    
     return 0;
 }
