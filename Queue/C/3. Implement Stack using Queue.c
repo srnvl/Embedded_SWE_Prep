@@ -66,27 +66,31 @@ int dequeue(struct Queue* queue) {
     return data;
 }
 
-// Function to push an element onto the stack
-void push(struct Queue* queue, int data) {
-    // Enqueue the new element
-    enqueue(queue, data);
-
-    // Dequeue and enqueue the front elements to move the new element to the front
-    int size = 1;
-    while (size < 2) {
-        int front = dequeue(queue);
-        enqueue(queue, front);
-        size++;
-    }
+// Function to push an item onto the stack
+void push(struct Queue* queue, int value) {
+    enqueue(queue, value);
 }
 
-// Function to pop an element from the stack
+// Function to pop an item from the stack
 int pop(struct Queue* queue) {
-    if (isEmpty(queue)) {
-        fprintf(stderr, "Stack is empty\n");
-        exit(EXIT_FAILURE);
+    struct Queue* tempQueue = createQueue();
+    int poppedItem;
+
+    while (!isEmpty(queue)) {
+        int item = dequeue(queue);
+        if (isEmpty(queue)) {
+            poppedItem = item;
+        } else {
+            enqueue(tempQueue, item);
+        }
     }
-    return dequeue(queue);
+
+    while (!isEmpty(tempQueue)) {
+        enqueue(queue, dequeue(tempQueue));
+    }
+
+    free(tempQueue);
+    return poppedItem;
 }
 
 int main() {
