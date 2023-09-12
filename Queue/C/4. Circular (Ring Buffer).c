@@ -13,7 +13,7 @@ int count = 0; // keeping track of elements
 
 void push(int data)
 {
-    if(count == 5)
+    if(count == MAX_SIZE)
     {
         printf("Buffer is full.\n");
     }
