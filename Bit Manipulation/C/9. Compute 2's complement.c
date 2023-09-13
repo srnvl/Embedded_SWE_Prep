@@ -2,7 +2,9 @@
 
 int twosComp(int n)
 {
-    return -n;
+    int ones_comp = ~n;
+    int twos_comp = ones_comp + 1;
+    return twos_comp;
 }
 
 int main()
