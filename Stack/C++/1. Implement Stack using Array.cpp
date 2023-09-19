@@ -6,9 +6,9 @@ using namespace std;
 
 class Stack{
     int top;
+    int a[MAX];
     
 public:
-    int a[MAX];
     Stack(){
         top = -1;
     }
