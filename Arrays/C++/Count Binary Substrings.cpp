@@ -1,26 +1,30 @@
-class Solution 
-{
-public:
-    int countBinarySubstrings(string s) 
-    {
-        int res = 0;
-        
-        int prevCount = 0;
-        int currCount = 1; //s[0]
-        
-        for(int i=1; i<s.size(); i++)
-        {
-            if (s[i] == s[i-1])
-                currCount++;
-            else
-            {
-                res = res + min({prevCount, currCount});
-                prevCount = currCount;
-                currCount = 1;
-            }
+#include <iostream>
+#include <string>
+
+int countBinarySubstrings(const std::string& s) {
+    int count = 0;
+    int prevCount = 0;
+    int currentCount = 1;
+    
+    for (int i = 1; i < s.length(); i++) {
+        if (s[i] == s[i - 1]) {
+            currentCount += 1;
+        } else {
+            prevCount = currentCount;
+            currentCount = 1;
         }
         
-        res = res + min({prevCount, currCount}); // for the last group
-        return res;
+        if (prevCount >= currentCount) {
+            count += 1;
+        }
     }
-};
+    
+    return count;
+}
+
+int main() {
+    std::string input = "0011";
+    int result = countBinarySubstrings(input);
+    std::cout << "Count of valid binary substrings: " << result << std::endl;
+    return 0;
+}
