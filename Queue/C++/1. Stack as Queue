@@ -1,0 +1,163 @@
+#include <iostream>
+#include <queue>
+
+class StackUsingQueue {
+public:
+    // Push element x onto stack.
+    void push(int x) {
+        q.push(x);
+        // Move the recently added element to the front of the queue
+        for (int i = 0; i < q.size() - 1; ++i) {
+            q.push(q.front());
+            q.pop();
+        }
+    }
+
+    // Removes the element on the top of the stack and returns that element.
+    int pop() {
+        int top = q.front();
+        q.pop();
+        return top;
+    }
+
+    // Get the top element.
+    int top() {
+        return q.front();
+    }
+
+    // Returns whether the stack is empty.
+    bool empty() {
+        return q.empty();
+    }
+
+private:
+    std::queue<int> q;
+};
+
+int main() {
+    StackUsingQueue stack;
+
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+
+    std::cout << "Top element: " << stack.top() << std::endl;
+    std::cout << "Popped element: " << stack.pop() << std::endl;
+    std::cout << "Top element: " << stack.top() << std::endl;
+    std::cout << "Is stack empty? " << (stack.empty() ? "Yes" : "No") << std::endl;
+
+    return 0;
+}
+//////////// Or use /////////////////////////
+
+#include <iostream>
+
+// Structure to represent a node
+struct Node {
+    int data;
+    Node* next;
+};
+
+// Structure to represent a queue
+struct Queue {
+    Node* front;
+    Node* rear;
+};
+
+// Function to create a new node
+Node* createNode(int data) {
+    Node* newNode = new Node;
+    if (!newNode) {
+        std::cerr << "Memory allocation error" << std::endl;
+        exit(EXIT_FAILURE);
+    }
+    newNode->data = data;
+    newNode->next = nullptr;
+    return newNode;
+}
+
+// Function to create a new queue
+Queue* createQueue() {
+    Queue* queue = new Queue;
+    if (!queue) {
+        std::cerr << "Memory allocation error" << std::endl;
+        exit(EXIT_FAILURE);
+    }
+    queue->front = queue->rear = nullptr;
+    return queue;
+}
+
+// Function to check if the queue is empty
+bool isEmpty(Queue* queue) {
+    return (queue->front == nullptr);
+}
+
+// Function to enqueue an element into the queue
+void enqueue(Queue* queue, int data) {
+    Node* newNode = createNode(data);
+    if (isEmpty(queue)) {
+        queue->front = queue->rear = newNode;
+    } else {
+        queue->rear->next = newNode;
+        queue->rear = newNode;
+    }
+}
+
+// Function to dequeue an element from the queue
+int dequeue(Queue* queue) {
+    if (isEmpty(queue)) {
+        std::cerr << "Queue is empty" << std::endl;
+        exit(EXIT_FAILURE);
+    }
+    int data = queue->front->data;
+    Node* temp = queue->front;
+    queue->front = queue->front->next;
+    delete temp;
+    return data;
+}
+
+// Function to push an item onto the stack
+void push(Queue* queue, int value) {
+    enqueue(queue, value);
+}
+
+// Function to pop an item from the stack
+int pop(Queue* queue) {
+    Queue* tempQueue = createQueue();
+    int poppedItem;
+
+    while (!isEmpty(queue)) {
+        int item = dequeue(queue);
+        if (isEmpty(queue)) {
+            poppedItem = item;
+        } else {
+            enqueue(tempQueue, item);
+        }
+    }
+
+    while (!isEmpty(tempQueue)) {
+        enqueue(queue, dequeue(tempQueue));
+    }
+
+    delete tempQueue;
+    return poppedItem;
+}
+
+int main() {
+    Queue* stack = createQueue();
+
+    push(stack, 1);
+    push(stack, 2);
+    push(stack, 3);
+
+    std::cout << "Popped element: " << pop(stack) << std::endl;
+    std::cout << "Popped element: " << pop(stack) << std::endl;
+
+    push(stack, 4);
+
+    std::cout << "Popped element: " << pop(stack) << std::endl;
+    std::cout << "Popped element: " << pop(stack) << std::endl;
+
+    delete stack;
+    return 0;
+}
