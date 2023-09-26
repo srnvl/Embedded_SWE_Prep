@@ -1,0 +1,76 @@
+#include <iostream>
+
+#define MAX_SIZE 100
+
+struct ArrayQueue {
+    int front;
+    int rear;
+    int arr[MAX_SIZE];
+};
+
+void initialize(ArrayQueue* queue) {
+    queue->front = -1;
+    queue->rear = -1;
+}
+
+bool isEmpty(ArrayQueue* queue) {
+    return queue->front == -1;
+}
+
+bool isFull(ArrayQueue* queue) {
+    return (queue->rear + 1) % MAX_SIZE == queue->front;
+}
+
+void enqueue(ArrayQueue* queue, int data) {
+    if (isFull(queue)) {
+        std::cout << "Queue is full. Cannot enqueue element " << data << "." << std::endl;
+        return;
+    }
+    if (isEmpty(queue)) {
+        queue->rear = 0;
+        queue->front = 0;
+    }
+    else {
+        queue->rear = (queue->rear + 1) % MAX_SIZE;
+    }
+    queue->arr[queue->rear] = data;
+    std::cout << "Enqueued " << data << " in the queue." << std::endl;
+}
+
+int dequeue(ArrayQueue* queue) {
+    if (isEmpty(queue)) {
+        std::cout << "Queue is empty. Cannot dequeue elements." << std::endl;
+        return -1;
+    }
+    int data = queue->arr[queue->front];
+    if (queue->front == queue->rear) {
+        queue->front = -1;
+        queue->rear = -1;
+    }
+    else {
+        queue->front = (queue->front + 1) % MAX_SIZE;
+    }
+    return data;
+}
+
+int peek(ArrayQueue* queue) {
+    if (isEmpty(queue)) {
+        std::cout << "Queue is empty. Cannot peek." << std::endl;
+        return -1; // Return an error value
+    }
+    return queue->arr[queue->front];
+}
+
+int main() {
+    ArrayQueue queue;
+    initialize(&queue);
+    enqueue(&queue, 1);
+    enqueue(&queue, 2);
+    enqueue(&queue, 3);
+    enqueue(&queue, 4);
+    enqueue(&queue, 5);
+    std::cout << "Front element is: " << peek(&queue) << std::endl;
+    dequeue(&queue);
+    std::cout << "Front element is: " << peek(&queue) << std::endl;
+    return 0;
+}
