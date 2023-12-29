@@ -1,4 +1,0 @@
-Trees are commonly asked questions in System Software Engineering Interviews and not likely asked for Firmware/Embedded Software Engineering Interviews.
-Refer Glassdoor interview questions for NVIDIA.
-I believe Apple might ask
-However, there's no harm to prepare for things before hand :)
