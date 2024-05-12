@@ -30,27 +30,17 @@ and thus the Output -1.
 
 '''
 
-def isPowerOfTwo(n):
-    if(n > 0 and (n & (n-1)) > 0):
-        return False
-    return True
-
-def findPos(n):
-    if(isPowerOfTwo(n) == False):
-        return -1
+def find_set_bit_position(num):
+    if num == 0:
+        return -1  # No set bit found
+    position = 0
+    while num & 1 == 0:
+        num >>= 1
+        position += 1
+    return position
     
-    i = 1
-    pos = 1
-
-    while((n & i) == 0):
-        i = i << 1
-        pos += 1
-    return pos
-
-n = input("Enter a number: ")
-n = int(n)
-pos = findPos(n)
-if(pos == -1):
-    print("Invalid number")
+bit_position = find_set_bit_position(number)
+if bit_position != -1:
+    print("Position of the only set bit:", bit_position + 1)
 else:
-    print(f'The bit is present at {pos}th position')
+    print("No set bit found in the number.")
