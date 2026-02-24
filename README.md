@@ -25,7 +25,7 @@ Linked list
 13. Reverse linked list in blocks of K
 14. Add a node at nth position
 15. Delete a node from nth position
-16. Delete nth node from the linked list
+16. Delete a particular node from the linked list
 
 Arrays
 -----------
