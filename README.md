@@ -1,4 +1,4 @@
-# Embedded_SWE_Prep
+# The Embedded Forge
 
 List of commonly asked questions for Embedded SW Engineering interviews.
 
