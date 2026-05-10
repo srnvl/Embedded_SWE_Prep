@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Embedded SWE Prep</title>
+  <title> Embedded Software / Firmware Engineering Prep</title>
 
   <style>
     body {
@@ -76,44 +76,12 @@
 
   <h1>
     Firmware Stack
-    <span class="badge"> - Embedded SW Interview Prep</span>
+    <span class="badge"> Interview Prep</span>
   </h1>
 
   <p>
     A structured repository for Embedded Software / Firmware Engineering interview preparation.
   </p>
-
-  <div class="section">
-    <h2>Core Topics</h2>
-
-    <ul>
-      <li><a href="./Embedded_C/">Embedded C</a></li>
-      <li><a href="./RTOS/">RTOS</a></li>
-      <li><a href="./Linux/">Linux</a></li>
-      <li><a href="./Microcontrollers/">Microcontrollers</a></li>
-      <li><a href="./Firmware/">Firmware</a></li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>Coding Practice</h2>
-
-    <ul>
-      <li><a href="./LeetCode/">LeetCode</a></li>
-      <li><a href="./DSA/">Data Structures & Algorithms</a></li>
-      <li><a href="./C_Programming/">C Programming</a></li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>Interview Preparation</h2>
-
-    <ul>
-      <li><a href="./Interview_Questions/">Interview Questions</a></li>
-      <li><a href="./Projects/">Projects</a></li>
-      <li><a href="./System_Design/">System Design</a></li>
-    </ul>
-  </div>
 
   <div class="section">
     <h2>Resources</h2>
