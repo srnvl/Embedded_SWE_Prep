@@ -75,12 +75,12 @@
 <body>
 
   <h1>
-    Firmware Stack
-    <span class="badge">Interview Prep</span>
+    The Firmware Stack
+    <span class="badge"> - Embedded SW Interview Prep</span>
   </h1>
 
   <p>
-    A structured repository for Embedded Software Engineering interview preparation.
+    A structured repository for Embedded Software / Firmware Engineering interview preparation.
   </p>
 
   <div class="section">
