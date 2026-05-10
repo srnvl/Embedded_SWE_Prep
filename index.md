@@ -75,7 +75,7 @@
 <body>
 
   <h1>
-    The Firmware Stack
+    Firmware Stack
     <span class="badge"> - Embedded SW Interview Prep</span>
   </h1>
 
