@@ -1,9 +1,8 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> Embedded Software / Firmware Engineering Prep</title>
+  <title> Embedded Software / Firmware Engineering Prep </title>
 
   <style>
     body {
