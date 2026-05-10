@@ -12,16 +12,16 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0e0f11;
-    --surface: #16181c;
-    --surface2: #1e2128;
-    --border: rgba(255,255,255,0.07);
-    --border2: rgba(255,255,255,0.13);
-    --text: #e8eaf0;
-    --muted: #7a7f8e;
-    --accent: #5de6a8;
-    --accent2: #4fc8ff;
-    --tag-bg: rgba(93,230,168,0.1);
+    --bg: #EEF2F7;
+    --surface: #FFFFFF;
+    --surface2: #E2E8F2;
+    --border: rgba(13,27,46,0.09);
+    --border2: rgba(13,27,46,0.16);
+    --text: #0D1B2E;
+    --muted: #5A6A82;
+    --accent: #0A8A5C;
+    --accent2: #0771C2;
+    --tag-bg: rgba(10,138,92,0.08);
     --font-display: 'Syne', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
   }
@@ -41,7 +41,7 @@
     position: absolute;
     top: -80px; right: -80px;
     width: 380px; height: 380px;
-    background: radial-gradient(circle, rgba(93,230,168,0.07) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(10,138,92,0.07) 0%, transparent 70%);
     pointer-events: none;
   }
   .hero-label {
@@ -217,7 +217,7 @@
     font-size: 10px;
     padding: 2px 8px;
     border-radius: 10px;
-    background: rgba(255,255,255,0.05);
+    background: rgba(13,27,46,0.05);
     color: var(--muted);
     margin-left: auto;
   }
@@ -293,9 +293,9 @@
     font-size: 9px;
     padding: 1px 5px;
     border-radius: 4px;
-    background: rgba(79,200,255,0.12);
+    background: rgba(7,113,194,0.1);
     color: var(--accent2);
-    border: 1px solid rgba(79,200,255,0.2);
+    border: 1px solid rgba(7,113,194,0.22);
     flex-shrink: 0;
     margin-top: 3px;
     white-space: nowrap;
@@ -405,8 +405,8 @@
 const DATA = {
   "Linked List": {
     icon: "ti-list",
-    color: "#5de6a8",
-    iconBg: "rgba(93,230,168,0.12)",
+    color: "#0A8A5C",
+    iconBg: "rgba(10,138,92,0.1)",
     items: [
       { text: "Determine if there is a cycle or not" },
       { text: "Return the node where a cycle begins" },
@@ -428,8 +428,8 @@ const DATA = {
   },
   "Arrays": {
     icon: "ti-table",
-    color: "#4fc8ff",
-    iconBg: "rgba(79,200,255,0.12)",
+    color: "#0771C2",
+    iconBg: "rgba(7,113,194,0.1)",
     items: [
       { text: "Find pivot index (sum left = sum right)" },
       { text: "Diagonal traverse and print" },
@@ -446,8 +446,8 @@ const DATA = {
   },
   "Hashmap": {
     icon: "ti-hash",
-    color: "#ff7a5c",
-    iconBg: "rgba(255,122,92,0.12)",
+    color: "#C0440A",
+    iconBg: "rgba(192,68,10,0.1)",
     items: [
       { text: "2 Sum — return indices adding to target", g75: true },
       { text: "4 Sum" },
@@ -466,8 +466,8 @@ const DATA = {
   },
   "Stack": {
     icon: "ti-stack-2",
-    color: "#c084fc",
-    iconBg: "rgba(192,132,252,0.12)",
+    color: "#7C3ABC",
+    iconBg: "rgba(124,58,188,0.1)",
     items: [
       { text: "Implement Stack using an Array" },
       { text: "Implement Stack using a Linked List" },
@@ -485,8 +485,8 @@ const DATA = {
   },
   "Queue": {
     icon: "ti-arrows-right",
-    color: "#facc15",
-    iconBg: "rgba(250,204,21,0.12)",
+    color: "#A07A00",
+    iconBg: "rgba(160,122,0,0.1)",
     items: [
       { text: "Implement Queue using an Array" },
       { text: "Implement Queue using a Linked List" },
@@ -497,8 +497,8 @@ const DATA = {
   },
   "Sorting": {
     icon: "ti-arrows-sort",
-    color: "#5de6a8",
-    iconBg: "rgba(93,230,168,0.12)",
+    color: "#0A8A5C",
+    iconBg: "rgba(10,138,92,0.1)",
     items: [
       { text: "Selection sort" },
       { text: "Bubble sort" },
@@ -509,8 +509,8 @@ const DATA = {
   },
   "Searching": {
     icon: "ti-zoom-code",
-    color: "#4fc8ff",
-    iconBg: "rgba(79,200,255,0.12)",
+    color: "#0771C2",
+    iconBg: "rgba(7,113,194,0.1)",
     items: [
       { text: "Linear search" },
       { text: "Binary search" },
@@ -518,8 +518,8 @@ const DATA = {
   },
   "Bit Manipulation": {
     icon: "ti-binary",
-    color: "#ff7a5c",
-    iconBg: "rgba(255,122,92,0.12)",
+    color: "#C0440A",
+    iconBg: "rgba(192,68,10,0.1)",
     items: [
       { text: "Swap bits in odd and even positions" },
       { text: "Power of 2" },
@@ -545,8 +545,8 @@ const DATA = {
   },
   "Embedded Specific": {
     icon: "ti-cpu",
-    color: "#c084fc",
-    iconBg: "rgba(192,132,252,0.12)",
+    color: "#7C3ABC",
+    iconBg: "rgba(124,58,188,0.1)",
     items: [
       { text: "Boot sequence" },
       { text: "Causes of segmentation fault and how to overcome" },
@@ -583,8 +583,8 @@ const DATA = {
   },
   "C++": {
     icon: "ti-code",
-    color: "#facc15",
-    iconBg: "rgba(250,204,21,0.12)",
+    color: "#A07A00",
+    iconBg: "rgba(160,122,0,0.1)",
     items: [
       { text: "new and delete operators" },
       { text: "OOP theory — abstraction, inheritance, polymorphism, encapsulation" },
