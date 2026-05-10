@@ -75,13 +75,12 @@
 <body>
 
   <h1>
-    Embedded SWE Prep
+    The Embedded Stack
     <span class="badge">Interview Prep</span>
   </h1>
 
   <p>
-    A structured repository for Embedded Software Engineering interview preparation,
-    covering Embedded C, RTOS, Linux, DSA, Firmware concepts, and coding practice.
+    A structured repository for Embedded Software Engineering interview preparation.
   </p>
 
   <div class="section">
