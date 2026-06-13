@@ -6,350 +6,264 @@
 <title> The Embedded Forge </title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #EEF2F7;
+    --bg: #F6F8FB;
+    --bg2: #FFFFFF;
+    --bg3: #0F1B2D;
     --surface: #FFFFFF;
-    --surface2: #E2E8F2;
-    --border: rgba(13,27,46,0.09);
-    --border2: rgba(13,27,46,0.16);
-    --text: #0D1B2E;
-    --muted: #5A6A82;
-    --accent: #0A8A5C;
-    --accent2: #0771C2;
-    --tag-bg: rgba(10,138,92,0.08);
-    --font-display: 'Syne', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
+    --surface2: #EAEFF5;
+    --line: rgba(20,35,59,0.09);
+    --line2: rgba(20,35,59,0.15);
+    --text: #14233B;
+    --muted: #586784;
+    --faint: #93A1B5;
+    --ember: #2563EB;
+    --ember2: #4F86F7;
+    --ember-glow: rgba(37,99,235,0.16);
+    --copper: #7AA7FF;
+    --steel: #8093A9;
+    --steel-dim: #CBD5E1;
+    --done: #0E9F6E;
+    --done2: #6FD3A8;
+    --tag-bg: rgba(37,99,235,0.09);
+
+    --font-display: 'Bricolage Grotesque', sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+    --r: 10px;
+    --r-lg: 14px;
   }
 
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--font-display); min-height: 100vh; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--tag-bg); }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: var(--steel-dim); border-radius: 6px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--steel); }
+  :focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; border-radius: 4px; }
 
-  /* HERO */
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero, #practice { animation: rise 0.45s cubic-bezier(.2,.7,.2,1) both; }
+  }
+
+  /* ===== HERO ===== */
   .hero {
-    padding: 3rem 2.5rem 2rem;
-    border-bottom: 1px solid var(--border);
+    padding: 3.75rem 2.75rem 2.5rem;
+    border-bottom: 1px solid var(--line);
     position: relative;
-    overflow: hidden;
   }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -80px; right: -80px;
-    width: 380px; height: 380px;
-    background: radial-gradient(circle, rgba(10,138,92,0.07) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-label {
+  .hero-eyebrow {
     font-family: var(--font-mono);
     font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    margin-bottom: 0.75rem;
+    color: var(--ember);
+    display: inline-flex; align-items: center; gap: 9px;
+    margin-bottom: 1.1rem;
   }
+  .hero-eyebrow .spark { width: 7px; height: 7px; border-radius: 2px; background: var(--ember); flex: none; }
   .hero h1 {
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-family: var(--font-display);
+    font-size: clamp(2.3rem, 5.5vw, 3.9rem);
     font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.6rem;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.9rem;
   }
-  .hero h1 span { color: var(--accent); }
-  .hero p {
-    font-size: 13px;
-    color: var(--muted);
-    font-family: var(--font-mono);
-    margin-bottom: 1.75rem;
-  }
-  .stats-row { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .stat {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.5rem 1.1rem;
-    text-align: center;
-  }
-  .stat-num { font-size: 1.25rem; font-weight: 700; color: var(--accent); }
-  .stat-label { font-size: 10px; color: var(--muted); font-family: var(--font-mono); }
+  .hero h1 span { color: var(--ember); }
+  .hero p { font-size: 15px; color: var(--muted); max-width: 560px; margin-bottom: 2rem; }
+  .stats-row { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 1.6rem; }
+  .stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 0.65rem 1.15rem; min-width: 84px; }
+  .stat-num { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--text); line-height: 1.1; }
+  #stat-done .stat-num, .stat:last-child .stat-num { color: var(--done); }
+  .stat-label { font-size: 10px; color: var(--muted); font-family: var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
 
-  /* SEARCH BAR */
+  .forge-progress { display: flex; align-items: center; gap: 14px; max-width: 560px; }
+  .fp-track { flex: 1; height: 6px; background: var(--surface2); border-radius: 6px; overflow: hidden; }
+  .fp-fill { height: 100%; width: 0; border-radius: 6px; background: linear-gradient(90deg, var(--done2), var(--done)); transition: width 0.5s cubic-bezier(.2,.7,.2,1); }
+  .fp-label { font-family: var(--font-mono); font-size: 11px; color: var(--muted); white-space: nowrap; }
+
+  /* ===== SEARCH BAR ===== */
   .search-bar {
-    padding: 0.9rem 2.5rem;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    gap: 0.75rem;
-    align-items: center;
-    flex-wrap: wrap;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: var(--bg);
+    padding: 1rem 2.75rem;
+    border-bottom: 1px solid var(--line);
+    display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap;
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(246,248,251,0.9);
+    backdrop-filter: blur(12px);
   }
   .search-wrap {
-    flex: 1; min-width: 180px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--surface);
-    border: 1px solid var(--border2);
-    border-radius: 8px;
-    padding: 0 1rem;
-  }
-  .search-wrap i { color: var(--muted); font-size: 16px; }
-  .search-wrap input {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: var(--text);
-    font-family: var(--font-mono);
-    font-size: 13px;
-    padding: 0.55rem 0;
-    width: 100%;
-  }
-  .search-wrap input::placeholder { color: var(--muted); }
-  .filter-pills { display: flex; gap: 6px; flex-wrap: wrap; }
-  .pill {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    padding: 5px 12px;
-    border-radius: 20px;
-    border: 1px solid var(--border2);
-    background: transparent;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.15s;
-    white-space: nowrap;
-  }
-  .pill:hover { border-color: var(--accent); color: var(--accent); }
-  .pill.active { background: var(--tag-bg); border-color: var(--accent); color: var(--accent); }
-
-  /* LAYOUT */
-  .main {
-    display: grid;
-    grid-template-columns: 230px 1fr;
-  }
-
-  /* SIDEBAR */
-  .sidebar {
-    border-right: 1px solid var(--border);
-    padding: 1.25rem 0;
-    position: sticky;
-    top: 57px;
-    height: calc(100vh - 57px);
-    overflow-y: auto;
-  }
-  .sidebar::-webkit-scrollbar { width: 4px; }
-  .sidebar::-webkit-scrollbar-track { background: transparent; }
-  .sidebar::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
-
-  .sidebar-title {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 0 1.25rem;
-    margin-bottom: 0.75rem;
-  }
-  .cat-btn {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 0.5rem 1.25rem;
-    background: transparent;
-    border: none;
-    border-left: 2px solid transparent;
-    color: var(--muted);
-    font-family: var(--font-display);
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.12s;
-  }
-  .cat-btn:hover { color: var(--text); background: var(--surface); }
-  .cat-btn.active { color: var(--accent); border-left-color: var(--accent); background: var(--surface); }
-  .cat-count {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    background: var(--surface2);
-    border-radius: 10px;
-    padding: 2px 7px;
-    color: var(--muted);
-    flex-shrink: 0;
-  }
-  .cat-btn.active .cat-count { background: var(--tag-bg); color: var(--accent); }
-
-  /* CONTENT */
-  .content { padding: 1.75rem 2.5rem; }
-
-  .section { margin-bottom: 2.75rem; display: none; }
-  .section.visible { display: block; }
-
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.5rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .section-icon {
-    width: 32px; height: 32px;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-    flex-shrink: 0;
-  }
-  .section-header h2 {
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-  }
-  .section-badge {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 10px;
-    background: rgba(13,27,46,0.05);
-    color: var(--muted);
-    margin-left: auto;
-  }
-
-  .progress-bar-wrap {
+    flex: 1; min-width: 200px;
     display: flex; align-items: center; gap: 10px;
-    margin-bottom: 1rem;
+    background: var(--surface); border: 1px solid var(--line2); border-radius: var(--r);
+    padding: 0 1rem; transition: border-color 0.15s, box-shadow 0.15s;
   }
-  .progress-bar {
-    flex: 1; height: 3px;
-    background: var(--surface2);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    background: var(--accent);
-    border-radius: 2px;
-    transition: width 0.3s ease;
-  }
-  .progress-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--muted);
-    white-space: nowrap;
-  }
+  .search-wrap:focus-within { border-color: var(--ember); box-shadow: 0 0 0 3px var(--ember-glow); }
+  .search-wrap i { color: var(--faint); font-size: 17px; }
+  .search-wrap input { background: transparent; border: none; outline: none; color: var(--text); font-family: var(--font-mono); font-size: 13px; padding: 0.6rem 0; width: 100%; }
+  .search-wrap input::placeholder { color: var(--faint); }
+  .filter-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+  .pill { font-family: var(--font-mono); font-size: 11px; padding: 7px 15px; border-radius: 999px; border: 1px solid var(--line2); background: var(--surface); color: var(--muted); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+  .pill:hover { border-color: var(--ember); color: var(--ember); }
+  .pill.active { background: var(--ember); border-color: var(--ember); color: #fff; font-weight: 500; }
 
-  /* TOPIC CARDS */
-  .topics-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-    gap: 8px;
-  }
-  .topic-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.65rem 1rem;
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    transition: all 0.15s;
-    cursor: default;
-  }
-  .topic-card:hover { border-color: var(--border2); background: var(--surface2); }
-  .topic-card.done { opacity: 0.4; }
-  .topic-card.done .topic-text { text-decoration: line-through; }
+  /* ===== LAYOUT ===== */
+  .main { display: grid; grid-template-columns: 256px 1fr; align-items: start; }
 
-  .check-box {
-    width: 16px; height: 16px;
-    border: 1px solid var(--border2);
-    border-radius: 4px;
-    flex-shrink: 0;
-    margin-top: 2px;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.12s;
-    font-size: 10px;
-    color: transparent;
-    user-select: none;
+  /* ===== SIDEBAR ===== */
+  .sidebar { border-right: 1px solid var(--line); padding: 1.5rem 0.9rem; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; }
+  .sidebar-title { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); padding: 0 0.9rem; margin-bottom: 0.9rem; }
+  .cat-btn {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    width: 100%; padding: 0.6rem 0.9rem;
+    background: transparent; border: 1px solid transparent; border-radius: var(--r);
+    color: var(--muted); font-family: var(--font-body); font-size: 13.5px; font-weight: 500;
+    cursor: pointer; text-align: left; transition: all 0.13s;
   }
-  .topic-card:hover .check-box { border-color: var(--accent); }
-  .topic-card.done .check-box { background: var(--accent); border-color: var(--accent); color: #000; font-weight: 700; }
+  .cat-btn:hover { color: var(--text); background: var(--surface2); }
+  .cat-btn.active { color: var(--text); background: var(--surface); border-color: var(--line2); }
+  .cat-btn.active::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--ember); flex: none; margin-right: -2px; }
+  .cat-count { font-family: var(--font-mono); font-size: 10px; background: var(--surface2); border-radius: 8px; padding: 2px 8px; color: var(--muted); flex-shrink: 0; }
+  .cat-btn.active .cat-count { background: var(--tag-bg); color: var(--ember); }
 
-  .topic-text {
-    font-size: 13px;
-    line-height: 1.55;
-    color: var(--text);
-    flex: 1;
-  }
+  /* ===== CONTENT ===== */
+  .content { padding: 2rem 2.75rem 4rem; }
+  .section { margin-bottom: 3rem; display: none; }
+  .section.visible { display: block; }
+  .section-header { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.6rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--line); }
+  .section-icon { width: 36px; height: 36px; border-radius: var(--r); display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; border: 1px solid var(--line); }
+  .section-header h2 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; }
+  .section-badge { font-family: var(--font-mono); font-size: 10px; padding: 3px 9px; border-radius: 8px; background: var(--surface2); color: var(--muted); margin-left: auto; }
+  .progress-bar-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 1.2rem; }
+  .progress-bar { flex: 1; height: 3px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--done2), var(--done)); border-radius: 2px; transition: width 0.3s ease; }
+  .progress-label { font-family: var(--font-mono); font-size: 10px; color: var(--muted); white-space: nowrap; }
 
-  .no-results {
-    padding: 4rem;
-    text-align: center;
-    color: var(--muted);
-    font-family: var(--font-mono);
-    font-size: 13px;
-    display: none;
-  }
+  /* ===== TOPIC CARDS ===== */
+  .topics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; }
+  .topic-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 0.85rem 1.1rem; display: flex; align-items: flex-start; gap: 12px; position: relative; overflow: hidden; transition: border-color 0.15s, transform 0.12s, box-shadow 0.15s; }
+  .topic-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--ember); transform: scaleY(0); transform-origin: top; transition: transform 0.18s; }
+  .topic-card:hover { border-color: var(--line2); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(20,35,59,0.06); }
+  .topic-card:hover::before { transform: scaleY(1); }
+  .topic-card.done { opacity: 0.62; }
+  .topic-card.done::before { transform: scaleY(1); background: var(--done); }
+  .topic-card.done .topic-text { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--steel-dim); }
+  .check-box { width: 17px; height: 17px; border: 1.5px solid var(--line2); border-radius: 5px; flex-shrink: 0; margin-top: 2px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 10px; color: transparent; user-select: none; transition: all 0.13s; }
+  .topic-card:hover .check-box { border-color: var(--ember); }
+  .topic-card.done .check-box { background: var(--done); border-color: var(--done); color: #fff; font-weight: 700; }
+  .topic-text { font-size: 13.5px; line-height: 1.55; color: var(--text); flex: 1; cursor: pointer; transition: color 0.13s; }
+  .topic-text:hover { color: var(--ember); }
+  .no-results { padding: 4rem; text-align: center; color: var(--muted); font-family: var(--font-mono); font-size: 13px; display: none; }
 
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 1.25rem 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  footer span {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted);
-  }
-  footer a {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--accent);
-    text-decoration: none;
-  }
+  /* ===== FOOTER ===== */
+  footer { border-top: 1px solid var(--line); padding: 1.4rem 2.75rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+  footer span, footer a { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+  footer a { color: var(--ember); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
 
-  /* RESPONSIVE */
-  @media (max-width: 700px) {
-    .hero { padding: 2rem 1.25rem 1.5rem; }
-    .search-bar { padding: 0.75rem 1.25rem; }
+  /* ===== PRACTICE VIEW ===== */
+  #practice { display: none; padding: 2.5rem 2.75rem 4rem; max-width: 940px; }
+  #app.practicing .search-bar, #app.practicing .main { display: none; }
+  #app.practicing #practice { display: block; }
+  .pr-back { font-family: var(--font-mono); font-size: 12px; color: var(--muted); background: none; border: none; cursor: pointer; display: inline-flex; gap: 8px; align-items: center; margin-bottom: 1.6rem; transition: color 0.13s; }
+  .pr-back:hover { color: var(--ember); }
+  .pr-cat { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ember); margin-bottom: 0.6rem; }
+  .pr-title { font-family: var(--font-display); font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.06; margin-bottom: 1.3rem; }
+  .pr-prompt { border-left: 2px solid var(--ember); background: var(--surface); border-radius: 0 var(--r) var(--r) 0; padding: 1rem 1.25rem; margin-bottom: 1.8rem; font-size: 14.5px; line-height: 1.65; color: var(--text); border-top: 1px solid var(--line); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .pr-prompt code { font-family: var(--font-mono); font-size: 0.85em; background: var(--surface2); padding: 1px 6px; border-radius: 4px; color: var(--ember); }
+
+  .forge { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 1.2rem 1.35rem; margin-bottom: 1.4rem; }
+  .forge-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.9rem; }
+  .forge-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); }
+  .forge-timer { font-family: var(--font-mono); font-size: 1.7rem; font-weight: 600; color: var(--ember); font-variant-numeric: tabular-nums; }
+  .heat-track { position: relative; height: 7px; border-radius: 5px; background: var(--surface2); overflow: visible; }
+  .heat-fill { position: absolute; inset: 0 100% 0 0; height: 7px; border-radius: 5px; background: linear-gradient(90deg, var(--copper), var(--ember)); }
+  .heat-fill::after { content: ''; position: absolute; right: -1px; top: 50%; width: 8px; height: 8px; border-radius: 50%; background: var(--ember); transform: translateY(-50%); }
+  .heat-notches { position: relative; height: 14px; margin-top: 7px; }
+  .heat-notches .nx { position: absolute; transform: translateX(-50%); font-family: var(--font-mono); font-size: 9px; color: var(--faint); top: 0; transition: color 0.4s; }
+  .heat-notches .nx.lit { color: var(--ember); }
+
+  .pr-hints { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 1.6rem; }
+  .pr-hint { border: 1px solid var(--line2); border-radius: var(--r); padding: 0.9rem; background: var(--surface); transition: border-color 0.35s, background 0.35s; }
+  .pr-hint.locked { opacity: 0.85; }
+  .pr-hint.unlocked { border-color: var(--ember); background: var(--tag-bg); }
+  .pr-hint-head { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--steel); margin-bottom: 0.7rem; }
+  .pr-hint.unlocked .pr-hint-head { color: var(--ember); }
+  .coal { width: 9px; height: 9px; border-radius: 50%; background: var(--steel-dim); flex-shrink: 0; }
+  .pr-hint.unlocked .coal { background: var(--ember); }
+  .pr-hint-when { font-family: var(--font-mono); font-size: 10px; color: var(--faint); }
+  .pr-hint-reveal { font-family: var(--font-mono); font-size: 11px; color: var(--ember); border: 1px solid var(--ember); background: transparent; border-radius: 6px; padding: 6px 10px; width: 100%; cursor: pointer; transition: background 0.15s; }
+  .pr-hint-reveal:hover { background: var(--tag-bg); }
+  .pr-hint-text { font-size: 12.5px; line-height: 1.55; color: var(--text); }
+
+  .pr-wb-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.55rem; }
+  .pr-wb { width: 100%; min-height: 210px; resize: vertical; background: var(--surface); border: 1px dashed var(--line2); border-radius: var(--r); color: var(--text); font-family: var(--font-mono); font-size: 13px; line-height: 1.7; padding: 1rem; margin-bottom: 1.5rem; transition: border-color 0.15s; }
+  .pr-wb:focus { outline: none; border-color: var(--ember); border-style: solid; }
+  .pr-wb::placeholder { color: var(--faint); }
+
+  .pr-actions { display: flex; gap: 11px; flex-wrap: wrap; margin-bottom: 1.6rem; }
+  .pr-btn { font-family: var(--font-body); font-size: 13.5px; font-weight: 500; padding: 0.7rem 1.3rem; border-radius: var(--r); border: 1px solid var(--line2); background: var(--surface); color: var(--text); cursor: pointer; transition: all 0.15s; }
+  .pr-btn:hover { border-color: var(--ember); }
+  .pr-btn.primary { background: var(--ember); border-color: var(--ember); color: #fff; }
+  .pr-btn.primary:hover { background: var(--ember2); border-color: var(--ember2); }
+  .pr-btn.is-done { background: rgba(14,159,110,0.10); border-color: var(--done); color: var(--done); }
+  .pr-solution { display: none; }
+  .pr-solution.show { display: block; }
+  .pr-solution-inner { border: 1px solid var(--line); border-radius: var(--r-lg); padding: 1.2rem 1.35rem; background: var(--surface); }
+  .pr-solution-inner h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--ember); margin-bottom: 0.8rem; }
+  .pr-solution-inner pre { white-space: pre-wrap; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.75; color: var(--text); }
+  .pr-note { font-family: var(--font-mono); font-size: 11px; color: var(--faint); line-height: 1.7; margin-top: 1.8rem; padding-top: 1.1rem; border-top: 1px solid var(--line); }
+
+  /* ===== CODE IDE ===== */
+  .ide { margin-bottom: 1.6rem; }
+  .ide-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 0.7rem; flex-wrap: wrap; }
+  .ide-lang { font-family: var(--font-mono); font-size: 12px; padding: 7px 11px; border: 1px solid var(--line2); border-radius: 7px; background: var(--surface); color: var(--text); cursor: pointer; }
+  .ide-run { font-family: var(--font-body); font-size: 13px; font-weight: 600; padding: 7px 20px; border-radius: 7px; border: 1px solid var(--ember); background: var(--ember); color: #fff; cursor: pointer; transition: all 0.15s; }
+  .ide-run:hover { background: var(--ember2); border-color: var(--ember2); }
+  .ide-run:disabled { opacity: 0.55; cursor: default; }
+  .ide-reset { font-family: var(--font-mono); font-size: 11px; color: var(--muted); background: none; border: none; cursor: pointer; margin-left: auto; }
+  .ide-reset:hover { color: var(--ember); }
+  .editor-wrap { display: flex; background: var(--bg3); border: 1px solid var(--line2); border-radius: var(--r); overflow: hidden; }
+  .editor-gutter { padding: 14px 10px; text-align: right; font-family: var(--font-mono); font-size: 13px; line-height: 1.6; color: #5C6E86; background: rgba(0,0,0,0.22); user-select: none; min-width: 42px; overflow: hidden; white-space: pre; }
+  .editor-area { flex: 1; padding: 14px; font-family: var(--font-mono); font-size: 13px; line-height: 1.6; color: #E6EDF6; background: transparent; border: none; outline: none; resize: vertical; min-height: 220px; overflow: auto; tab-size: 4; }
+  .editor-area::placeholder { color: #5C6E86; }
+  .ide-stdin { width: 100%; font-family: var(--font-mono); font-size: 12px; padding: 9px 11px; border: 1px solid var(--line2); border-radius: 7px; background: var(--surface); color: var(--text); margin-top: 0.7rem; resize: vertical; }
+  .ide-stdin::placeholder { color: var(--faint); }
+  .ide-out-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin: 0.9rem 0 0.45rem; display: flex; justify-content: space-between; align-items: center; }
+  .ide-out-label .st { text-transform: none; letter-spacing: 0; color: var(--ember); }
+  .ide-out-body { font-family: var(--font-mono); font-size: 12.5px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; background: var(--bg3); color: #E6EDF6; border: 1px solid var(--line2); border-radius: var(--r); padding: 13px; min-height: 50px; max-height: 300px; overflow: auto; }
+  .ide-out-body.err { color: #FF8B7A; }
+  .ide-note { font-family: var(--font-mono); font-size: 10.5px; color: var(--faint); margin-top: 0.6rem; line-height: 1.6; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 820px) {
+    .hero { padding: 2.75rem 1.35rem 2rem; }
+    .search-bar { padding: 0.85rem 1.35rem; }
     .main { grid-template-columns: 1fr; }
-    .sidebar {
-      position: static;
-      height: auto;
-      border-right: none;
-      border-bottom: 1px solid var(--border);
-      padding: 0.75rem 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
-      overflow: visible;
-    }
+    .sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--line); padding: 0.85rem 1rem; display: flex; flex-wrap: wrap; gap: 6px; overflow: visible; }
     .sidebar-title { display: none; }
-    .cat-btn {
-      border-left: none;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.35rem 0.75rem;
-      width: auto;
-      font-size: 12px;
-    }
-    .cat-btn.active { border-color: var(--accent); }
-    .content { padding: 1.25rem; }
+    .cat-btn { width: auto; border: 1px solid var(--line); border-radius: 999px; padding: 0.4rem 0.85rem; font-size: 12px; }
+    .cat-btn.active::before { display: none; }
+    .content { padding: 1.5rem 1.35rem 3rem; }
     .topics-grid { grid-template-columns: 1fr; }
-    footer { padding: 1rem 1.25rem; }
+    #practice { padding: 1.75rem 1.35rem 3rem; }
+    .pr-hints { grid-template-columns: 1fr; }
+    footer { padding: 1.1rem 1.35rem; }
   }
 </style>
 </head>
@@ -357,9 +271,14 @@
 
 <div id="app">
   <header class="hero">
-    <h1><span> The Embedded Forge </h1>
-    <p> The definite interview prep guide for Embedded SW Engineering roles </p>
+    <div class="hero-eyebrow"><span class="spark"></span>Systems &amp; embedded interview prep</div>
+    <h1>The Embedded <span>Forge</span></h1>
+    <p>A guided forge for low-level interview prep - drill the concepts, reason on the whiteboard, and write real C, C++ and Rust under interview heat.</p>
     <div class="stats-row" id="stats-row"></div>
+    <div class="forge-progress">
+      <div class="fp-track"><div class="fp-fill" id="hero-progress"></div></div>
+      <span class="fp-label" id="hero-progress-label">0 forged</span>
+    </div>
   </header>
 
   <div class="search-bar">
@@ -381,6 +300,8 @@
     </main>
   </div>
 
+  <section id="practice" aria-label="Practice"></section>
+
   <footer>
     <span>Progress saved in your browser &mdash; <span id="footer-progress"></span></span>
   </footer>
@@ -393,11 +314,25 @@ const DATA = {
     color: "#0A8A5C",
     iconBg: "rgba(10,138,92,0.1)",
     items: [
-      { text: "Determine if there is a cycle or not" },
+      { text: "Determine if there is a cycle or not",
+        prompt: "Given the head of a singly linked list, determine whether it contains a cycle. Aim for O(n) time and O(1) space.",
+        hints: [
+          "A hash set of visited nodes works but costs O(n) space. Can you detect a loop without remembering every node?",
+          "Picture two runners on a circular track at different speeds — the faster one eventually laps the slower one. Apply that to pointers.",
+          "Floyd's algorithm: a slow pointer moves one step, a fast pointer two. If they ever meet, there's a cycle; if fast hits null, there isn't."
+        ],
+        solution: "Floyd's tortoise and hare: advance slow by 1 and fast by 2 each step. If fast or fast->next becomes null, no cycle. If slow == fast, there's a cycle. O(n) time, O(1) space.\n\nFollow-up (your next topic): find the node where the cycle begins — reset one pointer to head and advance both by 1; they meet at the cycle start." },
       { text: "Return the node where a cycle begins" },
       { text: "Find the node where two linked lists intersect" },
       { text: "Remove Nth node from end of the list" },
-      { text: "Reverse linked list" },
+      { text: "Reverse linked list",
+        prompt: "Reverse a singly linked list and return the new head. Do it iteratively in O(n) time and O(1) space, then discuss the recursive version.",
+        hints: [
+          "You're re-pointing each node's next to its previous node. What do you need to remember before you overwrite a node's next pointer?",
+          "Track three pointers as you walk: previous, current, and the saved next. Lose any one and you either lose the rest of the list or can't link backwards.",
+          "Loop: save next = cur.next; cur.next = prev; prev = cur; cur = next. When cur is null, prev is the new head."
+        ],
+        solution: "Iterative, O(1) space:\n\n  Node* reverse(Node* head) {\n      Node *prev = nullptr, *cur = head;\n      while (cur) { Node* next = cur->next; cur->next = prev; prev = cur; cur = next; }\n      return prev;\n  }\n\nRecursive version reverses the rest, then fixes head->next->next = head and head->next = nullptr — O(n) stack space. Expect the follow-up to reverse in groups of K." },
       { text: "Remove linked list elements of a given value" },
       { text: "Group all odd and even nodes together in order" },
       { text: "Palindrome linked list" },
@@ -443,7 +378,14 @@ const DATA = {
       { text: "Group anagrams" },
       { text: "Valid Sudoku" },
       { text: "Longest substring without repeating characters" },
-      { text: "LRU cache" },
+      { text: "LRU cache",
+        prompt: "Design a cache with a fixed capacity supporting get(key) and put(key, value), both O(1). When full, evict the least recently used entry.",
+        hints: [
+          "You need two things at once: O(1) lookup by key, and O(1) knowledge of what's least recently used. One structure can't do both well — combine two.",
+          "A hash map gives O(1) lookup. A doubly linked list ordered by recency gives O(1) move-to-front and O(1) eviction from the back.",
+          "The map stores key -> list node. On access, unlink the node and move it to the front. On insert when full, drop the tail node and erase its key from the map."
+        ],
+        solution: "Hash map (key -> node) + doubly linked list ordered most-to-least recently used. get: look up node, move to front, return value. put: if present, update and move to front; else insert at front and, if over capacity, evict the tail and erase its key. Every operation is O(1).\n\nThis is the canonical 'combine two structures' problem — interviewers want to see you reach for the list to track recency." },
       { text: "Ransom Note" },
       { text: "Insert Delete GetRandom O(1)" },
       { text: "Design Hashmap" },
@@ -476,7 +418,14 @@ const DATA = {
       { text: "Implement Queue using an Array" },
       { text: "Implement Queue using a Linked List" },
       { text: "Implement Stack using Queue" },
-      { text: "Circular (Ring) buffer" },
+      { text: "Circular (Ring) buffer",
+        prompt: "Implement a fixed-capacity circular buffer for a single producer and single consumer: push returns false if full, pop returns false if empty. No dynamic allocation.",
+        hints: [
+          "Use a fixed array plus a head and a tail index. The hard part is telling 'completely full' from 'completely empty' — both can look like head == tail.",
+          "Two common fixes: keep a separate count, or leave one slot always empty so full is (head + 1) % cap == tail. Pick one and stay consistent.",
+          "With a count: push writes at head, advances head modulo capacity, increments count; pop reads at tail, advances tail, decrements count. Full is count == cap, empty is count == 0."
+        ],
+        solution: "Array + head + tail + count. Push at head, pop at tail; both indices wrap with modulo (or a branch, cheaper than % on small MCUs). The count disambiguates full vs empty.\n\nFollow-up: make it safe across two threads/contexts. For single-producer/single-consumer you can drop the lock if head and tail are each written by only one side, using acquire/release memory ordering — the lock-free version." },
       { text: "Design Hit Counter" },
     ]
   },
@@ -510,7 +459,14 @@ const DATA = {
       { text: "Power of 2" },
       { text: "Set, clear and toggle i'th bit" },
       { text: "Find position of the only set bit" },
-      { text: "Count number of set bits in logN time" },
+      { text: "Count number of set bits in logN time",
+        prompt: "Count the bits set to 1 in a 32-bit unsigned integer in time proportional to the number of set bits, not 32.",
+        hints: [
+          "A naive version checks each of the 32 bits with a mask and a shift. Get that working, then ask: can you skip the zero bits?",
+          "There's a classic trick: n & (n - 1) clears the lowest set bit. Walk through what it does to 0b10110 on paper.",
+          "Loop while (n) { count++; n &= n - 1; }. Each iteration removes exactly one set bit, so it runs once per set bit."
+        ],
+        solution: "Brian Kernighan's algorithm: each n &= (n - 1) clears the lowest set bit, so the loop runs once per set bit.\n\n  int popcount(uint32_t n) {\n      int c = 0;\n      while (n) { n &= (n - 1); c++; }\n      return c;\n  }\n\nMention __builtin_popcount and why a lookup table can win for batch work." },
       { text: "Add two numbers without arithmetic operators" },
       { text: "Find the only number that appears once" },
       { text: "Set all bits in a given range" },
@@ -537,7 +493,14 @@ const DATA = {
       { text: "Causes of segmentation fault and how to overcome" },
       { text: "Differences between fault, abort and trap" },
       { text: "Compiler, assembler, linker, loader" },
-      { text: "Volatile, preprocessor, pragmas, const" },
+      { text: "Volatile, preprocessor, pragmas, const",
+        prompt: "An interrupt updates a multi-byte sensor reading that the main loop reads. Explain what can go wrong and how to make it correct. Where does volatile help, and where does it not?",
+        hints: [
+          "First problem: the compiler may cache the variable in a register and never see the ISR's update. What qualifier addresses that?",
+          "Second problem: the value is multi-byte, so the main loop can read it half-updated if the interrupt fires mid-read. That's atomicity, separate from visibility.",
+          "volatile fixes visibility (forces a reload). For atomicity of a multi-byte value, briefly disable the interrupt around the read (a short critical section), use a single-word atomic, or a sequence-counter/double-buffer scheme."
+        ],
+        solution: "Two distinct issues. Visibility: mark the shared variable volatile so the compiler reloads it on every access. Atomicity: a multi-byte read can tear if the ISR fires mid-read, so guard the main-loop access with a short critical section (disable the relevant interrupt, copy, re-enable), use an atomic word, or a sequence counter the reader re-checks. volatile alone does NOT give atomicity — a very common misconception. const is a compiler-enforced promise, not storage; pragmas/preprocessor are compile-time directives, unrelated to runtime visibility." },
       { text: "Fine-grained vs coarse-grained multithreading" },
       { text: "Virtual memory, paging, thread vs process" },
       { text: "Implement mutex using test-and-set, load-linked & store-conditional" },
@@ -549,7 +512,14 @@ const DATA = {
       { text: "Implement memcpy, memmove, strstr, strcpy, atoi, malloc, free" },
       { text: "Aligned malloc" },
       { text: "VIPT, TLBs, page faults" },
-      { text: "Interrupts, exceptions, deadlocks, priority inversion and inheritance" },
+      { text: "Interrupts, exceptions, deadlocks, priority inversion and inheritance",
+        prompt: "A high-priority task is blocked on a resource held by a low-priority task, which gets preempted by a medium-priority task. The high task misses its deadline. Name this and explain the fix.",
+        hints: [
+          "Trace the priorities: high is stuck behind low (fine, briefly), but medium runs ahead of low — so low never releases the resource. Who's effectively blocking high?",
+          "The medium task, unrelated to the resource, is indirectly starving the highest-priority task. This is a known, named hazard.",
+          "It's priority inversion. The standard fix is priority inheritance: while low holds a resource a higher task needs, it temporarily inherits that higher priority so medium can't preempt it. Priority ceiling is the alternative."
+        ],
+        solution: "Priority inversion: a medium task indirectly blocks a high task by preempting the low task that holds the shared resource. Fix with priority inheritance — the holder temporarily runs at the priority of its highest waiter, so unrelated medium tasks can't preempt it and it releases promptly. The 1997 Mars Pathfinder resets were a real instance, fixed by enabling priority inheritance on a mutex. Knowing that story signals real domain depth in defense/aerospace loops." },
       { text: "HW breakpoint vs SW breakpoint" },
       { text: "SPI vs UART vs I2C" },
       { text: "Matrix multiplication, cache blocking, tiling, GEMM, matrix rotation" },
@@ -625,6 +595,11 @@ function updateDoneStat() {
   if (el) el.textContent = totalDone();
   const fp = document.getElementById('footer-progress');
   if (fp) fp.textContent = totalDone() + ' of ' + totalItems() + ' topics completed';
+  const total = totalItems(), d = totalDone();
+  const hp = document.getElementById('hero-progress');
+  if (hp) hp.style.width = (total ? (d / total * 100) : 0) + '%';
+  const hl = document.getElementById('hero-progress-label');
+  if (hl) hl.textContent = d + ' / ' + total + ' forged';
 }
 
 function buildSidebar() {
@@ -707,6 +682,14 @@ function buildSection(name, cat, offset) {
     const cb = card.querySelector('.check-box');
     cb.onclick = toggle;
     cb.onkeydown = function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } };
+
+    const txt = card.querySelector('.topic-text');
+    txt.setAttribute('role', 'button');
+    txt.setAttribute('tabindex', '0');
+    txt.title = 'Open practice';
+    txt.onclick = function() { openPractice(name, item, key); };
+    txt.onkeydown = function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPractice(name, item, key); } };
+
     grid.appendChild(card);
   });
 
@@ -751,6 +734,273 @@ document.querySelectorAll('.pill').forEach(function(p) {
     render();
   });
 });
+
+/* ===== Practice view (added) ===== */
+const HINT_UNLOCKS = [600, 1200, 1800]; /* seconds = 10, 20, 30 min. Lower (e.g. 5,10,15) while testing. */
+const PR_TOTAL = HINT_UNLOCKS[2];
+const WB_KEY = 'eswe_wb_v1';
+let prTimer = null, prElapsed = 0;
+
+/* ----- Code IDE config (added) ----- */
+const CODING_CATEGORIES = new Set([
+  'Linked List', 'Arrays', 'Hashmap', 'Stack', 'Queue', 'Sorting', 'Searching', 'Bit Manipulation'
+]);
+const CODE_KEY = 'eswe_code_v1';
+const TEMPLATES = {
+  c:    '#include <stdio.h>\n\nint main(void) {\n    \n    return 0;\n}\n',
+  cpp:  '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    \n    return 0;\n}\n',
+  rust: 'fn main() {\n    \n}\n'
+};
+const LANG_MAP = {
+  c:    { lang: 'c',    file: 'main.c'   },
+  cpp:  { lang: 'c++',  file: 'main.cpp' },
+  rust: { lang: 'rust', file: 'main.rs'  }
+};
+let pistonVersions = null;
+
+function getCode(k) { try { return (JSON.parse(localStorage.getItem(CODE_KEY) || '{}'))[k]; } catch(e) { return undefined; } }
+function setCode(k, v) {
+  let a = {};
+  try { a = JSON.parse(localStorage.getItem(CODE_KEY) || '{}'); } catch(e) {}
+  a[k] = v;
+  try { localStorage.setItem(CODE_KEY, JSON.stringify(a)); } catch(e) {}
+}
+
+async function ensureVersions() {
+  if (pistonVersions) return pistonVersions;
+  const res = await fetch('https://emkc.org/api/v2/piston/runtimes');
+  const list = await res.json();
+  pistonVersions = {};
+  list.forEach(function(r) {
+    [r.language].concat(r.aliases || []).forEach(function(a) {
+      if (!pistonVersions[a]) pistonVersions[a] = r.version;
+    });
+  });
+  return pistonVersions;
+}
+
+async function runCode(langKey, code, stdin) {
+  const v = await ensureVersions();
+  const m = LANG_MAP[langKey];
+  const version = v[m.lang] || v[langKey] || '*';
+  const res = await fetch('https://emkc.org/api/v2/piston/execute', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ language: m.lang, version: version, files: [{ name: m.file, content: code }], stdin: stdin || '' })
+  });
+  if (!res.ok) throw new Error('runner ' + res.status);
+  return res.json();
+}
+
+function getNote(key) {
+  try { return (JSON.parse(localStorage.getItem(WB_KEY) || '{}'))[key] || ''; } catch(e) { return ''; }
+}
+function setNote(key, txt) {
+  let all = {};
+  try { all = JSON.parse(localStorage.getItem(WB_KEY) || '{}'); } catch(e) {}
+  all[key] = txt;
+  try { localStorage.setItem(WB_KEY, JSON.stringify(all)); } catch(e) {}
+}
+function fmtTime(s) { return String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0'); }
+function escapeHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function inlineCode(s) { return escapeHtml(s).replace(/`([^`]+)`/g, '<code>$1</code>'); }
+
+function openPractice(catName, item, key) {
+  const pr = document.getElementById('practice');
+  const hasHints = Array.isArray(item.hints) && item.hints.length === 3;
+  const isDone = !!done[key];
+  const isCoding = CODING_CATEGORIES.has(catName);
+
+  const ideHtml = isCoding ? (
+    '<div class="ide" id="pr-ide">' +
+      '<div class="pr-wb-label" style="margin-top:0.2rem">Code editor</div>' +
+      '<div class="ide-bar">' +
+        '<select class="ide-lang" id="ide-lang" aria-label="Language">' +
+          '<option value="c">C</option><option value="cpp">C++</option><option value="rust">Rust</option>' +
+        '</select>' +
+        '<button class="ide-run" id="ide-run" type="button">Run</button>' +
+        '<button class="ide-reset" id="ide-reset" type="button">Reset to template</button>' +
+      '</div>' +
+      '<div class="editor-wrap">' +
+        '<div class="editor-gutter" id="ide-gutter">1</div>' +
+        '<textarea class="editor-area" id="ide-code" spellcheck="false" wrap="off" autocapitalize="off" autocorrect="off" aria-label="Code editor"></textarea>' +
+      '</div>' +
+      '<textarea class="ide-stdin" id="ide-stdin" rows="1" placeholder="Standard input (optional)"></textarea>' +
+      '<div class="ide-out-label"><span>Output</span><span class="st" id="ide-status"></span></div>' +
+      '<div class="ide-out-body" id="ide-out">Write your solution above and press Run. C, C++ and Rust only.</div>' +
+      '<div class="ide-note">Code compiles and runs via the free public Piston API over the internet (no sign-in, rate-limited). Your code is saved per topic in this browser.</div>' +
+    '</div>'
+  ) : '';
+
+  let hintsHtml;
+  if (hasHints) {
+    hintsHtml = '<div class="pr-hints" id="pr-hints">' + item.hints.map(function(h, i) {
+      return '<div class="pr-hint locked" id="pr-hint' + i + '">' +
+        '<div class="pr-hint-head"><span class="coal"></span>Hint ' + (i+1) + '</div>' +
+        '<div id="pr-hb' + i + '"><div class="pr-hint-when">Unlocks at ' + fmtTime(HINT_UNLOCKS[i]) + '</div></div>' +
+      '</div>';
+    }).join('') + '</div>';
+  } else {
+    hintsHtml = '<p class="pr-note" style="margin-top:0;border:none;padding:0 0 1.2rem">Hints aren\'t written for this topic yet. Practice on the whiteboard, then add prompt / hints / solution to this item in DATA.</p>';
+  }
+
+  const solBody = item.solution
+    ? '<pre>' + escapeHtml(item.solution) + '</pre>'
+    : '<pre>No solution written yet. Add a "solution" field to this item in DATA.</pre>';
+
+  pr.innerHTML =
+    '<button class="pr-back" id="pr-back">&larr; Back to topics</button>' +
+    '<div class="pr-cat">' + escapeHtml(catName) + '</div>' +
+    '<h1 class="pr-title">' + escapeHtml(item.text) + '</h1>' +
+    '<div class="pr-prompt">' + inlineCode(item.prompt || 'Solve this on the whiteboard as you would in a real interview. Reason out loud: approach, edge cases, complexity.') + '</div>' +
+    '<div class="forge">' +
+      '<div class="forge-top"><span class="forge-label">Forge heat</span><span class="forge-timer" id="pr-timer">00:00</span></div>' +
+      '<div class="heat-track"><div class="heat-fill" id="pr-fill"></div></div>' +
+      '<div class="heat-notches"><span class="nx" id="pr-n0" style="left:33.3%">10:00</span><span class="nx" id="pr-n1" style="left:66.6%">20:00</span><span class="nx" id="pr-n2" style="left:100%">30:00</span></div>' +
+    '</div>' +
+    hintsHtml +
+    '<div class="pr-wb-label">Your whiteboard</div>' +
+    '<textarea class="pr-wb" id="pr-wb" placeholder="No autocomplete, no syntax help — just like the real thing."></textarea>' +
+    ideHtml +
+    '<div class="pr-actions">' +
+      '<button class="pr-btn ' + (isDone ? 'is-done' : 'primary') + '" id="pr-done">' + (isDone ? '\u2713 Marked complete' : 'Mark complete') + '</button>' +
+      '<button class="pr-btn" id="pr-reveal">Reveal full solution</button>' +
+    '</div>' +
+    '<div class="pr-solution" id="pr-solution"><div class="pr-solution-inner"><h3>Solution &amp; what they\'re testing</h3>' + solBody + '</div></div>' +
+    '<p class="pr-note">Hints unlock at 10, 20 and 30 minutes — change HINT_UNLOCKS in the script to adjust. AI grading of the whiteboard needs a backend, so it isn\'t wired in here yet.</p>';
+
+  document.getElementById('app').classList.add('practicing');
+  window.scrollTo(0, 0);
+
+  const wb = document.getElementById('pr-wb');
+  wb.value = getNote(key);
+  wb.oninput = function() { setNote(key, wb.value); };
+
+  document.getElementById('pr-back').onclick = closePractice;
+  document.getElementById('pr-reveal').onclick = function() {
+    document.getElementById('pr-solution').classList.add('show');
+  };
+  const db = document.getElementById('pr-done');
+  db.onclick = function() {
+    done[key] = !done[key];
+    if (!done[key]) delete done[key];
+    saveState(); updateDoneStat();
+    if (done[key]) { db.className = 'pr-btn is-done'; db.textContent = '\u2713 Marked complete'; }
+    else { db.className = 'pr-btn primary'; db.textContent = 'Mark complete'; }
+  };
+
+  startPrTimer(item, hasHints);
+
+  if (isCoding) {
+    const codeEl = document.getElementById('ide-code');
+    const gutter = document.getElementById('ide-gutter');
+    const langSel = document.getElementById('ide-lang');
+    const stdinEl = document.getElementById('ide-stdin');
+    const runBtn = document.getElementById('ide-run');
+    const resetBtn = document.getElementById('ide-reset');
+    const outEl = document.getElementById('ide-out');
+    const statusEl = document.getElementById('ide-status');
+
+    const codeKeyFor = function(lang) { return key + '::code::' + lang; };
+
+    const refreshGutter = function() {
+      const n = codeEl.value.split('\n').length || 1;
+      let s = '';
+      for (let i = 1; i <= n; i++) s += i + (i < n ? '\n' : '');
+      gutter.textContent = s;
+    };
+    const loadLang = function(lang) {
+      const saved = getCode(codeKeyFor(lang));
+      codeEl.value = (saved !== undefined && saved !== null) ? saved : TEMPLATES[lang];
+      refreshGutter();
+      codeEl.scrollTop = 0; gutter.scrollTop = 0;
+    };
+
+    codeEl.addEventListener('input', function() { setCode(codeKeyFor(langSel.value), codeEl.value); refreshGutter(); });
+    codeEl.addEventListener('scroll', function() { gutter.scrollTop = codeEl.scrollTop; });
+    codeEl.addEventListener('keydown', function(e) {
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        const s = codeEl.selectionStart, en = codeEl.selectionEnd;
+        codeEl.value = codeEl.value.slice(0, s) + '    ' + codeEl.value.slice(en);
+        codeEl.selectionStart = codeEl.selectionEnd = s + 4;
+        setCode(codeKeyFor(langSel.value), codeEl.value); refreshGutter();
+      }
+    });
+    langSel.onchange = function() { loadLang(langSel.value); };
+    resetBtn.onclick = function() {
+      codeEl.value = TEMPLATES[langSel.value];
+      setCode(codeKeyFor(langSel.value), codeEl.value);
+      refreshGutter();
+    };
+    runBtn.onclick = async function() {
+      runBtn.disabled = true;
+      statusEl.textContent = 'running…';
+      outEl.classList.remove('err');
+      outEl.textContent = 'Compiling and running…';
+      try {
+        const data = await runCode(langSel.value, codeEl.value, stdinEl.value);
+        const compile = data.compile || {};
+        const run = data.run || {};
+        let text = '', isErr = false;
+        if (compile.code && compile.code !== 0) {
+          text = (compile.stderr || compile.output || 'Compilation failed.').trim();
+          isErr = true;
+        } else {
+          text = ((run.stdout || '') + (run.stderr || '')).replace(/\s+$/, '');
+          if ((run.code && run.code !== 0) || run.signal) isErr = true;
+        }
+        outEl.textContent = text || '(no output)';
+        outEl.classList.toggle('err', isErr);
+        statusEl.textContent = isErr ? 'exit ' + (run.code != null ? run.code : '1') : 'done';
+      } catch (err) {
+        outEl.classList.add('err');
+        outEl.textContent = "Couldn't reach the code runner. It's a free public service (Piston) and may be rate-limited or blocked on your network — try again in a moment, or self-host Piston / use Judge0 for production.";
+        statusEl.textContent = 'error';
+      } finally {
+        runBtn.disabled = false;
+      }
+    };
+
+    loadLang('c');
+  }
+}
+
+function startPrTimer(item, hasHints) {
+  stopPrTimer();
+  prElapsed = 0;
+  prTick(item, hasHints);
+  prTimer = setInterval(function() { prElapsed++; prTick(item, hasHints); }, 1000);
+}
+function stopPrTimer() { if (prTimer) clearInterval(prTimer); prTimer = null; }
+
+function prTick(item, hasHints) {
+  const t = document.getElementById('pr-timer');
+  if (!t) { stopPrTimer(); return; }
+  t.textContent = fmtTime(prElapsed);
+  const fill = document.getElementById('pr-fill');
+  if (fill) fill.style.right = (100 - Math.min(prElapsed / PR_TOTAL, 1) * 100) + '%';
+  if (!hasHints) return;
+  HINT_UNLOCKS.forEach(function(threshold, i) {
+    const card = document.getElementById('pr-hint' + i);
+    if (prElapsed >= threshold && card && card.classList.contains('locked')) {
+      card.classList.remove('locked'); card.classList.add('unlocked');
+      const n = document.getElementById('pr-n' + i); if (n) n.classList.add('lit');
+      const body = document.getElementById('pr-hb' + i);
+      body.innerHTML = '<button class="pr-hint-reveal" type="button">Reveal hint</button>';
+      body.querySelector('button').onclick = function() {
+        body.innerHTML = '<div class="pr-hint-text">' + inlineCode(item.hints[i]) + '</div>';
+      };
+    }
+  });
+}
+
+function closePractice() {
+  stopPrTimer();
+  document.getElementById('app').classList.remove('practicing');
+  render();
+  window.scrollTo(0, 0);
+}
 
 buildStats();
 render();
