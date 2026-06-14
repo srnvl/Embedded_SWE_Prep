@@ -3,142 +3,100 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title> CoreForge </title>
+<title> The Embedded Forge </title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Press+Start+2P&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #F6F8FB;
-    --bg2: #FFFFFF;
-    --bg3: #0F1B2D;
-    --surface: #FFFFFF;
-    --surface2: #EAEFF5;
-    --line: rgba(20,35,59,0.09);
-    --line2: rgba(20,35,59,0.15);
-    --text: #14233B;
-    --muted: #586784;
-    --faint: #93A1B5;
-    --ember: #2563EB;
-    --ember2: #4F86F7;
-    --ember-glow: rgba(37,99,235,0.16);
-    --copper: #7AA7FF;
-    --steel: #8093A9;
-    --steel-dim: #CBD5E1;
-    --done: #0E9F6E;
-    --done2: #6FD3A8;
-    --tag-bg: rgba(37,99,235,0.09);
+    --bg: #0F0A1F;
+    --bg2: #19122E;
+    --bg3: #0A0716;
+    --surface: #19122E;
+    --surface2: #241A40;
+    --line: rgba(180,160,255,0.15);
+    --line2: rgba(180,160,255,0.28);
+    --text: #F2F0FF;
+    --muted: #A39DC4;
+    --faint: #6E6796;
+    --ember: #2DF4FF;
+    --ember2: #7BF9FF;
+    --ember-glow: rgba(45,244,255,0.32);
+    --accent: #FF2E97;
+    --accent2: #FF6FB8;
+    --accent-glow: rgba(255,46,151,0.32);
+    --violet: #8B5CF6;
+    --copper: #FF2E97;
+    --steel: #8079A8;
+    --steel-dim: #3A3360;
+    --done: #2BFF88;
+    --done2: #7BFFB4;
+    --on-primary: #04121A;
+    --tag-bg: rgba(45,244,255,0.12);
 
+    --font-pixel: 'Press Start 2P', monospace;
     --font-display: 'Bricolage Grotesque', sans-serif;
     --font-body: 'Inter', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
     --r: 10px;
     --r-lg: 14px;
+    --notch: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 9px 100%, 0 calc(100% - 9px));
   }
 
   html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-body);
-    font-size: 15px;
-    line-height: 1.65;
-    min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
-  }
-  ::selection { background: var(--tag-bg); }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.65; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--accent-glow); }
   ::-webkit-scrollbar { width: 10px; height: 10px; }
   ::-webkit-scrollbar-thumb { background: var(--steel-dim); border-radius: 6px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--steel); }
   :focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; border-radius: 4px; }
 
   @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-  @media (prefers-reduced-motion: no-preference) {
-    .hero, #practice { animation: rise 0.45s cubic-bezier(.2,.7,.2,1) both; }
-  }
+  @media (prefers-reduced-motion: no-preference) { .hero, #practice { animation: rise 0.45s cubic-bezier(.2,.7,.2,1) both; } }
 
   /* ===== HERO ===== */
-  .hero {
-    padding: 3.75rem 2.75rem 2.5rem;
-    border-bottom: 1px solid var(--line);
-    position: relative;
-  }
-  .hero-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ember);
-    display: inline-flex; align-items: center; gap: 9px;
-    margin-bottom: 1.1rem;
-  }
-  .hero-eyebrow .spark { width: 7px; height: 7px; border-radius: 2px; background: var(--ember); flex: none; }
-  .hero h1 {
-    font-family: var(--font-display);
-    font-size: clamp(2.3rem, 5.5vw, 3.9rem);
-    font-weight: 800;
-    line-height: 1.0;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.9rem;
-  }
-  .hero h1 span { color: var(--ember); }
+  .hero { padding: 3.75rem 2.75rem 2.5rem; border-bottom: 1px solid var(--line); position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -160px; right: -120px; width: 540px; height: 540px; background: radial-gradient(circle, rgba(255,46,151,0.16) 0%, rgba(45,244,255,0.08) 42%, transparent 70%); pointer-events: none; }
+  .hero-eyebrow { font-family: var(--font-pixel); font-size: 9px; line-height: 1.7; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ember); display: inline-flex; align-items: center; gap: 11px; margin-bottom: 1.3rem; text-shadow: 0 0 10px var(--ember-glow); }
+  .hero-eyebrow .spark { width: 8px; height: 8px; background: var(--ember); box-shadow: 0 0 10px var(--ember-glow), 2px 2px 0 var(--accent); flex: none; }
+  .hero h1 { font-family: var(--font-display); font-size: clamp(2.3rem, 5.5vw, 3.9rem); font-weight: 800; line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 0.9rem; }
+  .hero h1 span { background: linear-gradient(100deg, var(--ember) 5%, var(--accent) 95%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; filter: drop-shadow(0 0 14px rgba(255,46,151,0.35)); }
   .hero p { font-size: 15px; color: var(--muted); max-width: 560px; margin-bottom: 2rem; }
   .stats-row { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 1.6rem; }
   .stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 0.65rem 1.15rem; min-width: 84px; }
   .stat-num { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--text); line-height: 1.1; }
   #stat-done .stat-num, .stat:last-child .stat-num { color: var(--done); }
-  .stat-label { font-size: 10px; color: var(--muted); font-family: var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
-
+  .stat-label { font-size: 9px; color: var(--muted); font-family: var(--font-pixel); letter-spacing: 0.02em; text-transform: uppercase; margin-top: 5px; }
   .forge-progress { display: flex; align-items: center; gap: 14px; max-width: 560px; }
-  .fp-track { flex: 1; height: 6px; background: var(--surface2); border-radius: 6px; overflow: hidden; }
-  .fp-fill { height: 100%; width: 0; border-radius: 6px; background: linear-gradient(90deg, var(--done2), var(--done)); transition: width 0.5s cubic-bezier(.2,.7,.2,1); }
-  .fp-label { font-family: var(--font-mono); font-size: 11px; color: var(--muted); white-space: nowrap; }
+  .fp-track { flex: 1; height: 8px; background: var(--surface2); border-radius: 0; overflow: hidden; border: 1px solid var(--line); }
+  .fp-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--done2), var(--done)); box-shadow: 0 0 10px rgba(43,255,136,0.5); transition: width 0.5s steps(20); }
+  .fp-label { font-family: var(--font-pixel); font-size: 9px; color: var(--muted); white-space: nowrap; }
 
   /* ===== SEARCH BAR ===== */
-  .search-bar {
-    padding: 1rem 2.75rem;
-    border-bottom: 1px solid var(--line);
-    display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap;
-    position: sticky; top: 0; z-index: 10;
-    background: rgba(246,248,251,0.9);
-    backdrop-filter: blur(12px);
-  }
-  .search-wrap {
-    flex: 1; min-width: 200px;
-    display: flex; align-items: center; gap: 10px;
-    background: var(--surface); border: 1px solid var(--line2); border-radius: var(--r);
-    padding: 0 1rem; transition: border-color 0.15s, box-shadow 0.15s;
-  }
+  .search-bar { padding: 1rem 2.75rem; border-bottom: 1px solid var(--line); display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap; position: sticky; top: 0; z-index: 10; background: rgba(15,10,31,0.9); backdrop-filter: blur(12px); }
+  .search-wrap { flex: 1; min-width: 200px; display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--line2); border-radius: var(--r); padding: 0 1rem; transition: border-color 0.15s, box-shadow 0.15s; }
   .search-wrap:focus-within { border-color: var(--ember); box-shadow: 0 0 0 3px var(--ember-glow); }
   .search-wrap i { color: var(--faint); font-size: 17px; }
   .search-wrap input { background: transparent; border: none; outline: none; color: var(--text); font-family: var(--font-mono); font-size: 13px; padding: 0.6rem 0; width: 100%; }
   .search-wrap input::placeholder { color: var(--faint); }
   .filter-pills { display: flex; gap: 6px; flex-wrap: wrap; }
-  .pill { font-family: var(--font-mono); font-size: 11px; padding: 7px 15px; border-radius: 999px; border: 1px solid var(--line2); background: var(--surface); color: var(--muted); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+  .pill { font-family: var(--font-pixel); font-size: 9px; padding: 9px 14px; border-radius: 0; clip-path: var(--notch); border: 1px solid var(--line2); background: var(--surface); color: var(--muted); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
   .pill:hover { border-color: var(--ember); color: var(--ember); }
-  .pill.active { background: var(--ember); border-color: var(--ember); color: #fff; font-weight: 500; }
+  .pill.active { background: var(--ember); border-color: var(--ember); color: var(--on-primary); box-shadow: 0 0 14px var(--ember-glow); }
 
   /* ===== LAYOUT ===== */
   .main { display: grid; grid-template-columns: 256px 1fr; align-items: start; }
-
-  /* ===== SIDEBAR ===== */
   .sidebar { border-right: 1px solid var(--line); padding: 1.5rem 0.9rem; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; }
-  .sidebar-title { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); padding: 0 0.9rem; margin-bottom: 0.9rem; }
-  .cat-btn {
-    display: flex; align-items: center; justify-content: space-between; gap: 10px;
-    width: 100%; padding: 0.6rem 0.9rem;
-    background: transparent; border: 1px solid transparent; border-radius: var(--r);
-    color: var(--muted); font-family: var(--font-body); font-size: 13.5px; font-weight: 500;
-    cursor: pointer; text-align: left; transition: all 0.13s;
-  }
-  .cat-btn:hover { color: var(--text); background: var(--surface2); }
+  .sidebar-title { font-family: var(--font-pixel); font-size: 8px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--faint); padding: 0 0.9rem; margin-bottom: 1rem; }
+  .cat-btn { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; padding: 0.6rem 0.9rem; background: transparent; border: 1px solid transparent; border-radius: var(--r); color: var(--muted); font-family: var(--font-body); font-size: 13.5px; font-weight: 500; cursor: pointer; text-align: left; transition: all 0.13s; }
+  .cat-btn:hover { color: var(--text); background: var(--surface); }
   .cat-btn.active { color: var(--text); background: var(--surface); border-color: var(--line2); }
-  .cat-btn.active::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--ember); flex: none; margin-right: -2px; }
-  .cat-count { font-family: var(--font-mono); font-size: 10px; background: var(--surface2); border-radius: 8px; padding: 2px 8px; color: var(--muted); flex-shrink: 0; }
+  .cat-btn.active::before { content: ''; width: 7px; height: 7px; background: var(--ember); box-shadow: 0 0 9px var(--ember-glow); flex: none; margin-right: -2px; }
+  .cat-count { font-family: var(--font-pixel); font-size: 8px; background: var(--surface2); border-radius: 6px; padding: 4px 7px; color: var(--muted); flex-shrink: 0; }
   .cat-btn.active .cat-count { background: var(--tag-bg); color: var(--ember); }
 
   /* ===== CONTENT ===== */
@@ -148,27 +106,27 @@
   .section-header { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.6rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--line); }
   .section-icon { width: 36px; height: 36px; border-radius: var(--r); display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; border: 1px solid var(--line); }
   .section-header h2 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; }
-  .section-badge { font-family: var(--font-mono); font-size: 10px; padding: 3px 9px; border-radius: 8px; background: var(--surface2); color: var(--muted); margin-left: auto; }
+  .section-badge { font-family: var(--font-pixel); font-size: 8px; padding: 5px 9px; border-radius: 6px; background: var(--surface2); color: var(--muted); margin-left: auto; }
   .progress-bar-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 1.2rem; }
-  .progress-bar { flex: 1; height: 3px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
-  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--done2), var(--done)); border-radius: 2px; transition: width 0.3s ease; }
-  .progress-label { font-family: var(--font-mono); font-size: 10px; color: var(--muted); white-space: nowrap; }
+  .progress-bar { flex: 1; height: 4px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--done2), var(--done)); border-radius: 2px; box-shadow: 0 0 8px rgba(43,255,136,0.4); transition: width 0.3s steps(12); }
+  .progress-label { font-family: var(--font-pixel); font-size: 8px; color: var(--muted); white-space: nowrap; }
 
   /* ===== TOPIC CARDS ===== */
   .topics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; }
   .topic-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 0.85rem 1.1rem; display: flex; align-items: flex-start; gap: 12px; position: relative; overflow: hidden; transition: border-color 0.15s, transform 0.12s, box-shadow 0.15s; }
-  .topic-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--ember); transform: scaleY(0); transform-origin: top; transition: transform 0.18s; }
-  .topic-card:hover { border-color: var(--line2); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(20,35,59,0.06); }
-  .topic-card:hover::before { transform: scaleY(1); }
-  .topic-card.done { opacity: 0.62; }
-  .topic-card.done::before { transform: scaleY(1); background: var(--done); }
+  .topic-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--ember); transform: scaleY(0); transform-origin: top; transition: transform 0.18s; }
+  .topic-card:hover { border-color: var(--ember); transform: translateY(-2px); box-shadow: 0 0 18px rgba(45,244,255,0.14); }
+  .topic-card:hover::before { transform: scaleY(1); box-shadow: 0 0 10px var(--ember-glow); }
+  .topic-card.done { opacity: 0.6; }
+  .topic-card.done::before { transform: scaleY(1); background: var(--done); box-shadow: 0 0 10px rgba(43,255,136,0.5); }
   .topic-card.done .topic-text { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--steel-dim); }
-  .check-box { width: 17px; height: 17px; border: 1.5px solid var(--line2); border-radius: 5px; flex-shrink: 0; margin-top: 2px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 10px; color: transparent; user-select: none; transition: all 0.13s; }
+  .check-box { width: 17px; height: 17px; border: 1.5px solid var(--line2); border-radius: 4px; flex-shrink: 0; margin-top: 2px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 10px; color: transparent; user-select: none; transition: all 0.13s; }
   .topic-card:hover .check-box { border-color: var(--ember); }
-  .topic-card.done .check-box { background: var(--done); border-color: var(--done); color: #fff; font-weight: 700; }
+  .topic-card.done .check-box { background: var(--done); border-color: var(--done); color: #04150B; font-weight: 700; box-shadow: 0 0 10px rgba(43,255,136,0.5); }
   .topic-text { font-size: 13.5px; line-height: 1.55; color: var(--text); flex: 1; cursor: pointer; transition: color 0.13s; }
   .topic-text:hover { color: var(--ember); }
-  .no-results { padding: 4rem; text-align: center; color: var(--muted); font-family: var(--font-mono); font-size: 13px; display: none; }
+  .no-results { padding: 4rem; text-align: center; color: var(--muted); font-family: var(--font-pixel); font-size: 10px; display: none; }
 
   /* ===== FOOTER ===== */
   footer { border-top: 1px solid var(--line); padding: 1.4rem 2.75rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
@@ -180,52 +138,58 @@
   #practice { display: none; padding: 2.5rem 2.75rem 4rem; max-width: 940px; }
   #app.practicing .search-bar, #app.practicing .main { display: none; }
   #app.practicing #practice { display: block; }
-  .pr-back { font-family: var(--font-mono); font-size: 12px; color: var(--muted); background: none; border: none; cursor: pointer; display: inline-flex; gap: 8px; align-items: center; margin-bottom: 1.6rem; transition: color 0.13s; }
+  .pr-back { font-family: var(--font-pixel); font-size: 9px; color: var(--muted); background: none; border: none; cursor: pointer; display: inline-flex; gap: 9px; align-items: center; margin-bottom: 1.7rem; transition: color 0.13s; }
   .pr-back:hover { color: var(--ember); }
-  .pr-cat { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ember); margin-bottom: 0.6rem; }
+  .pr-cat { font-family: var(--font-pixel); font-size: 9px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.9rem; text-shadow: 0 0 10px var(--accent-glow); }
   .pr-title { font-family: var(--font-display); font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.06; margin-bottom: 1.3rem; }
-  .pr-prompt { border-left: 2px solid var(--ember); background: var(--surface); border-radius: 0 var(--r) var(--r) 0; padding: 1rem 1.25rem; margin-bottom: 1.8rem; font-size: 14.5px; line-height: 1.65; color: var(--text); border-top: 1px solid var(--line); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .pr-prompt code { font-family: var(--font-mono); font-size: 0.85em; background: var(--surface2); padding: 1px 6px; border-radius: 4px; color: var(--ember); }
+  .pr-prompt { border: 1px solid var(--line); border-left: 3px solid var(--ember); background: var(--surface); border-radius: 0 var(--r) var(--r) 0; padding: 1rem 1.25rem; margin-bottom: 1.8rem; font-size: 14.5px; line-height: 1.65; color: var(--text); }
+  .pr-prompt code { font-family: var(--font-mono); font-size: 0.85em; background: var(--bg3); padding: 1px 6px; border-radius: 4px; color: var(--ember); }
 
-  .forge { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 1.2rem 1.35rem; margin-bottom: 1.4rem; }
-  .forge-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.9rem; }
-  .forge-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); }
-  .forge-timer { font-family: var(--font-mono); font-size: 1.7rem; font-weight: 600; color: var(--ember); font-variant-numeric: tabular-nums; }
-  .heat-track { position: relative; height: 7px; border-radius: 5px; background: var(--surface2); overflow: visible; }
-  .heat-fill { position: absolute; inset: 0 100% 0 0; height: 7px; border-radius: 5px; background: linear-gradient(90deg, var(--copper), var(--ember)); }
-  .heat-fill::after { content: ''; position: absolute; right: -1px; top: 50%; width: 8px; height: 8px; border-radius: 50%; background: var(--ember); transform: translateY(-50%); }
-  .heat-notches { position: relative; height: 14px; margin-top: 7px; }
-  .heat-notches .nx { position: absolute; transform: translateX(-50%); font-family: var(--font-mono); font-size: 9px; color: var(--faint); top: 0; transition: color 0.4s; }
-  .heat-notches .nx.lit { color: var(--ember); }
+  /* forge = arcade screen */
+  .forge { position: relative; overflow: hidden; background: var(--bg3); border: 1px solid var(--ember); border-radius: var(--r-lg); padding: 1.3rem 1.4rem; margin-bottom: 1.4rem; box-shadow: inset 0 0 32px rgba(45,244,255,0.07), 0 0 0 1px rgba(45,244,255,0.10); }
+  .forge::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(45,244,255,0.05) 0, rgba(45,244,255,0.05) 1px, transparent 1px, transparent 3px); pointer-events: none; }
+  .forge > * { position: relative; }
+  .forge-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+  .forge-label { font-family: var(--font-pixel); font-size: 8px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--ember2); }
+  .forge-timer { font-family: var(--font-pixel); font-size: 1.25rem; color: var(--ember); text-shadow: 0 0 12px var(--ember-glow); }
+  .heat-track { position: relative; height: 9px; border-radius: 0; background: rgba(255,255,255,0.06); border: 1px solid var(--line2); overflow: visible; }
+  .heat-fill { position: absolute; inset: 0 100% 0 0; height: 100%; background: linear-gradient(90deg, var(--ember), var(--accent)); box-shadow: 0 0 12px var(--ember-glow); }
+  .heat-fill::after { content: ''; position: absolute; right: -2px; top: 50%; width: 5px; height: 13px; background: var(--ember2); box-shadow: 0 0 10px var(--ember-glow); transform: translateY(-50%); }
+  .heat-notches { position: relative; height: 14px; margin-top: 8px; }
+  .heat-notches .nx { position: absolute; transform: translateX(-50%); font-family: var(--font-pixel); font-size: 8px; color: var(--faint); top: 0; transition: color 0.4s; }
+  .heat-notches .nx.lit { color: var(--ember); text-shadow: 0 0 8px var(--ember-glow); }
 
+  /* hints */
   .pr-hints { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 1.6rem; }
-  .pr-hint { border: 1px solid var(--line2); border-radius: var(--r); padding: 0.9rem; background: var(--surface); transition: border-color 0.35s, background 0.35s; }
-  .pr-hint.locked { opacity: 0.85; }
-  .pr-hint.unlocked { border-color: var(--ember); background: var(--tag-bg); }
-  .pr-hint-head { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--steel); margin-bottom: 0.7rem; }
+  .pr-hint { border: 1px solid var(--line2); border-radius: var(--r); padding: 0.9rem; background: var(--surface); transition: border-color 0.35s, background 0.35s, box-shadow 0.35s; }
+  .pr-hint.locked { opacity: 0.72; }
+  .pr-hint.unlocked { border-color: var(--ember); background: var(--tag-bg); box-shadow: 0 0 16px rgba(45,244,255,0.14); }
+  .pr-hint-head { display: flex; align-items: center; gap: 9px; font-family: var(--font-pixel); font-size: 9px; color: var(--steel); margin-bottom: 0.8rem; }
   .pr-hint.unlocked .pr-hint-head { color: var(--ember); }
-  .coal { width: 9px; height: 9px; border-radius: 50%; background: var(--steel-dim); flex-shrink: 0; }
-  .pr-hint.unlocked .coal { background: var(--ember); }
+  .coal { width: 9px; height: 9px; border-radius: 0; background: var(--steel-dim); flex-shrink: 0; }
+  .pr-hint.unlocked .coal { background: var(--ember); box-shadow: 0 0 10px var(--ember-glow); }
   .pr-hint-when { font-family: var(--font-mono); font-size: 10px; color: var(--faint); }
-  .pr-hint-reveal { font-family: var(--font-mono); font-size: 11px; color: var(--ember); border: 1px solid var(--ember); background: transparent; border-radius: 6px; padding: 6px 10px; width: 100%; cursor: pointer; transition: background 0.15s; }
+  .pr-hint-reveal { font-family: var(--font-pixel); font-size: 9px; color: var(--ember); border: 1px solid var(--ember); background: transparent; border-radius: 0; clip-path: var(--notch); padding: 8px 10px; width: 100%; cursor: pointer; transition: background 0.15s; }
   .pr-hint-reveal:hover { background: var(--tag-bg); }
   .pr-hint-text { font-size: 12.5px; line-height: 1.55; color: var(--text); }
 
-  .pr-wb-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.55rem; }
+  /* whiteboard */
+  .pr-wb-label { font-family: var(--font-pixel); font-size: 8px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.6rem; }
   .pr-wb { width: 100%; min-height: 210px; resize: vertical; background: var(--surface); border: 1px dashed var(--line2); border-radius: var(--r); color: var(--text); font-family: var(--font-mono); font-size: 13px; line-height: 1.7; padding: 1rem; margin-bottom: 1.5rem; transition: border-color 0.15s; }
   .pr-wb:focus { outline: none; border-color: var(--ember); border-style: solid; }
   .pr-wb::placeholder { color: var(--faint); }
 
+  /* actions + solution */
   .pr-actions { display: flex; gap: 11px; flex-wrap: wrap; margin-bottom: 1.6rem; }
-  .pr-btn { font-family: var(--font-body); font-size: 13.5px; font-weight: 500; padding: 0.7rem 1.3rem; border-radius: var(--r); border: 1px solid var(--line2); background: var(--surface); color: var(--text); cursor: pointer; transition: all 0.15s; }
+  .pr-btn { font-family: var(--font-body); font-size: 13.5px; font-weight: 600; padding: 0.7rem 1.4rem; border-radius: var(--r); border: 1px solid var(--line2); background: var(--surface); color: var(--text); cursor: pointer; transition: all 0.15s; }
   .pr-btn:hover { border-color: var(--ember); }
-  .pr-btn.primary { background: var(--ember); border-color: var(--ember); color: #fff; }
-  .pr-btn.primary:hover { background: var(--ember2); border-color: var(--ember2); }
-  .pr-btn.is-done { background: rgba(14,159,110,0.10); border-color: var(--done); color: var(--done); }
+  .pr-btn.primary { border-radius: 0; clip-path: var(--notch); background: var(--ember); border-color: var(--ember); color: var(--on-primary); }
+  .pr-btn.primary:hover { background: var(--ember2); box-shadow: 0 0 16px var(--ember-glow); }
+  .pr-btn.is-done { background: rgba(43,255,136,0.12); border-color: var(--done); color: var(--done2); }
   .pr-solution { display: none; }
   .pr-solution.show { display: block; }
   .pr-solution-inner { border: 1px solid var(--line); border-radius: var(--r-lg); padding: 1.2rem 1.35rem; background: var(--surface); }
-  .pr-solution-inner h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--ember); margin-bottom: 0.8rem; }
+  .pr-solution-inner h3 { font-family: var(--font-pixel); font-size: 11px; line-height: 1.6; color: var(--ember); margin-bottom: 1rem; }
   .pr-solution-inner pre { white-space: pre-wrap; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.75; color: var(--text); }
   .pr-note { font-family: var(--font-mono); font-size: 11px; color: var(--faint); line-height: 1.7; margin-top: 1.8rem; padding-top: 1.1rem; border-top: 1px solid var(--line); }
 
@@ -233,21 +197,21 @@
   .ide { margin-bottom: 1.6rem; }
   .ide-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 0.7rem; flex-wrap: wrap; }
   .ide-lang { font-family: var(--font-mono); font-size: 12px; padding: 7px 11px; border: 1px solid var(--line2); border-radius: 7px; background: var(--surface); color: var(--text); cursor: pointer; }
-  .ide-run { font-family: var(--font-body); font-size: 13px; font-weight: 600; padding: 7px 20px; border-radius: 7px; border: 1px solid var(--ember); background: var(--ember); color: #fff; cursor: pointer; transition: all 0.15s; }
-  .ide-run:hover { background: var(--ember2); border-color: var(--ember2); }
+  .ide-run { font-family: var(--font-pixel); font-size: 9px; padding: 11px 18px; border-radius: 0; clip-path: var(--notch); border: 1px solid var(--ember); background: var(--ember); color: var(--on-primary); cursor: pointer; transition: all 0.15s; }
+  .ide-run:hover { background: var(--ember2); box-shadow: 0 0 16px var(--ember-glow); }
   .ide-run:disabled { opacity: 0.55; cursor: default; }
   .ide-reset { font-family: var(--font-mono); font-size: 11px; color: var(--muted); background: none; border: none; cursor: pointer; margin-left: auto; }
   .ide-reset:hover { color: var(--ember); }
   .editor-wrap { display: flex; background: var(--bg3); border: 1px solid var(--line2); border-radius: var(--r); overflow: hidden; }
-  .editor-gutter { padding: 14px 10px; text-align: right; font-family: var(--font-mono); font-size: 13px; line-height: 1.6; color: #5C6E86; background: rgba(0,0,0,0.22); user-select: none; min-width: 42px; overflow: hidden; white-space: pre; }
-  .editor-area { flex: 1; padding: 14px; font-family: var(--font-mono); font-size: 13px; line-height: 1.6; color: #E6EDF6; background: transparent; border: none; outline: none; resize: vertical; min-height: 220px; overflow: auto; tab-size: 4; }
-  .editor-area::placeholder { color: #5C6E86; }
+  .editor-gutter { padding: 14px 10px; text-align: right; font-family: var(--font-mono); font-size: 13px; line-height: 1.6; color: #5B5388; background: rgba(0,0,0,0.3); user-select: none; min-width: 42px; overflow: hidden; white-space: pre; }
+  .editor-area { flex: 1; padding: 14px; font-family: var(--font-mono); font-size: 13px; line-height: 1.6; color: #E6E2FF; background: transparent; border: none; outline: none; resize: vertical; min-height: 220px; overflow: auto; tab-size: 4; }
+  .editor-area::placeholder { color: #5B5388; }
   .ide-stdin { width: 100%; font-family: var(--font-mono); font-size: 12px; padding: 9px 11px; border: 1px solid var(--line2); border-radius: 7px; background: var(--surface); color: var(--text); margin-top: 0.7rem; resize: vertical; }
   .ide-stdin::placeholder { color: var(--faint); }
-  .ide-out-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin: 0.9rem 0 0.45rem; display: flex; justify-content: space-between; align-items: center; }
-  .ide-out-label .st { text-transform: none; letter-spacing: 0; color: var(--ember); }
-  .ide-out-body { font-family: var(--font-mono); font-size: 12.5px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; background: var(--bg3); color: #E6EDF6; border: 1px solid var(--line2); border-radius: var(--r); padding: 13px; min-height: 50px; max-height: 300px; overflow: auto; }
-  .ide-out-body.err { color: #FF8B7A; }
+  .ide-out-label { font-family: var(--font-pixel); font-size: 8px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--faint); margin: 1rem 0 0.5rem; display: flex; justify-content: space-between; align-items: center; }
+  .ide-out-label .st { color: var(--ember); }
+  .ide-out-body { font-family: var(--font-mono); font-size: 12.5px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; background: var(--bg3); color: #E6E2FF; border: 1px solid var(--line2); border-radius: var(--r); padding: 13px; min-height: 50px; max-height: 300px; overflow: auto; }
+  .ide-out-body.err { color: var(--accent2); }
   .ide-note { font-family: var(--font-mono); font-size: 10.5px; color: var(--faint); margin-top: 0.6rem; line-height: 1.6; }
 
   /* ===== RESPONSIVE ===== */
@@ -265,6 +229,51 @@
     .pr-hints { grid-template-columns: 1fr; }
     footer { padding: 1.1rem 1.35rem; }
   }
+
+  /* ===== C CONCEPTS / LESSONS ===== */
+  .concepts-intro { color: var(--muted); max-width: 640px; margin-bottom: 1.6rem; }
+  .lesson-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+  .lesson-card { text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 1.2rem 1.3rem; cursor: pointer; transition: border-color 0.15s, transform 0.12s, box-shadow 0.15s; display: flex; flex-direction: column; gap: 0.5rem; }
+  .lesson-card:hover { border-color: var(--ember); transform: translateY(-2px); box-shadow: 0 6px 22px rgba(0,0,0,0.18); }
+  .lesson-card-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); }
+  .lesson-card-blurb { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .lesson-card-go { font-family: var(--font-mono); font-size: 11px; color: var(--ember); margin-top: 0.3rem; }
+
+  #lesson { display: none; padding: 2.5rem 2.75rem 5rem; max-width: 820px; }
+  #app.reading .search-bar, #app.reading .main, #app.reading #practice { display: none; }
+  #app.reading #lesson { display: block; }
+  .lesson-back { font-family: var(--font-mono); font-size: 12px; color: var(--muted); background: none; border: none; cursor: pointer; display: inline-flex; gap: 8px; align-items: center; margin-bottom: 1.4rem; }
+  .lesson-back:hover { color: var(--ember); }
+  .lesson-title { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.7rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 1.6rem; }
+
+  .lesson-body { font-size: 15px; line-height: 1.75; color: var(--text); }
+  .lesson-body h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin: 2.6rem 0 0.6rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--line); }
+  .lesson-body h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; margin: 1.9rem 0 0.6rem; color: var(--text); }
+  .lesson-body p { color: var(--muted); margin-bottom: 0.95rem; }
+  .lesson-body strong { color: var(--text); font-weight: 600; }
+  .lesson-body em { color: var(--text); }
+  .lesson-body ul, .lesson-body ol { color: var(--muted); margin: 0 0 1rem 1.3rem; }
+  .lesson-body li { margin-bottom: 0.45rem; }
+  .lesson-body code { font-family: var(--font-mono); font-size: 0.85em; background: var(--surface2); color: var(--ember); padding: 1px 6px; border-radius: 4px; }
+  .lesson-body pre.code { background: var(--bg3); border: 1px solid var(--line2); border-radius: var(--r); padding: 14px 16px; overflow-x: auto; margin: 0 0 1.2rem; }
+  .lesson-body pre.code code { background: none; color: #E6E2FF; padding: 0; font-size: 13px; line-height: 1.7; display: block; white-space: pre; }
+  .lesson-body table { width: 100%; border-collapse: collapse; margin: 0.2rem 0 1.4rem; font-size: 13.5px; }
+  .lesson-body th, .lesson-body td { text-align: left; padding: 9px 12px; border: 1px solid var(--line); vertical-align: top; }
+  .lesson-body th { background: var(--surface2); color: var(--text); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .lesson-body td { color: var(--muted); }
+  .lesson-body details { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 0.7rem 1.1rem; margin: 0 0 1.3rem; }
+  .lesson-body summary { cursor: pointer; font-family: var(--font-mono); font-size: 12px; color: var(--ember); font-weight: 500; }
+  .lesson-body details[open] summary { margin-bottom: 0.9rem; }
+  .lesson-body .callout { background: var(--tag-bg); border: 1px solid var(--line2); border-left: 3px solid var(--ember); border-radius: 0 var(--r) var(--r) 0; padding: 1rem 1.2rem; margin: 0 0 1.3rem; }
+  .lesson-body .callout h4 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ember); margin-bottom: 0.6rem; }
+  .lesson-body .callout li { color: var(--text); }
+  .lesson-body .note { color: var(--muted); font-style: italic; border-left: 2px solid var(--line2); padding-left: 0.9rem; }
+
+  @media (max-width: 820px) {
+    #lesson { padding: 1.75rem 1.35rem 3rem; }
+    .lesson-cards { grid-template-columns: 1fr; }
+  }
+
 </style>
 </head>
 <body>
@@ -272,8 +281,8 @@
 <div id="app">
   <header class="hero">
     <div class="hero-eyebrow"><span class="spark"></span>Systems &amp; embedded interview prep</div>
-    <h1>Core<span>Forge</span></h1>
-    <p>A guided forge for low-level interview prep - drill the concepts, reason on the whiteboard, and write real C, C++ and Rust under interview heat.</p>
+    <h1>The Embedded <span>Forge</span></h1>
+    <p>A guided forge for low-level interview prep — drill the concepts, reason on the whiteboard, and write real C, C++ and Rust under interview heat.</p>
     <div class="stats-row" id="stats-row"></div>
     <div class="forge-progress">
       <div class="fp-track"><div class="fp-fill" id="hero-progress"></div></div>
@@ -301,6 +310,7 @@
   </div>
 
   <section id="practice" aria-label="Practice"></section>
+  <section id="lesson" aria-label="Lesson"></section>
 
   <footer>
     <span>Progress saved in your browser &mdash; <span id="footer-progress"></span></span>
@@ -568,6 +578,58 @@ try { done = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) {
 let activeCategory = 'all';
 let activeFilter = 'all';
 let searchQuery = '';
+let activeView = 'topics';
+
+const CONCEPTS = [
+  { id: 'structs-pointers',
+    title: 'Structs &amp; Pointers in C',
+    blurb: 'Beginner to expert: the mental model, memory layout, dynamic allocation, linked lists, opaque pointers, and the bugs interviewers probe.',
+    html: "<p>Two foundational C topics, built up layer by layer \u2014 the mental models, how they sit in memory, the dynamic-allocation rules interviewers love, and the patterns (and bugs) that come up again and again.</p>\n<h2>Part 1 \u00b7 Pointers</h2>\n<h3>1.1 \u2014 What is a pointer?</h3>\n<p>Every variable lives somewhere in memory. Memory is a long street of numbered houses \u2014 each house is a byte, and its number is an address. <strong>A pointer is just a variable that stores an address.</strong></p>\n<pre class=\"code\"><code>int x = 42;     // x lives at some address, say 0x100, and holds 42\nint *p = &amp;x;    // p holds the value 0x100 (the address of x)</code></pre>\n<p>Three operators to internalize:</p>\n<table><thead><tr><th>Operator</th><th>Name</th><th>Meaning</th></tr></thead><tbody><tr><td><code>&amp;</code></td><td>Address-of</td><td>Give me the address of this variable</td></tr><tr><td><code>*</code> (in a declaration)</td><td>Pointer type</td><td>This variable holds an address</td></tr><tr><td><code>*</code> (on a pointer)</td><td>Dereference</td><td>Go to the address and read the value there</td></tr></tbody></table>\n<pre class=\"code\"><code>#include &lt;stdio.h&gt;\n\nint main() {\n    int x = 42;\n    int *p = &amp;x;\n\n    printf(&quot;Value of x:     %d\\n&quot;, x);    // 42\n    printf(&quot;Address of x:   %p\\n&quot;, &amp;x);   // 0x...\n    printf(&quot;Value of p:     %p\\n&quot;, p);    // same address\n    printf(&quot;Dereferenced p: %d\\n&quot;, *p);   // 42\n\n    *p = 100;   // change x through the pointer\n    printf(&quot;x is now:       %d\\n&quot;, x);    // 100\n}</code></pre>\n<p class=\"note\">Mental model: <code>p</code> is a signpost. <code>&amp;x</code> writes an address on the signpost. <code>*p</code> says \"follow the signpost and look at what is there.\"</p>\n<h3>1.2 \u2014 Why do pointers exist?</h3>\n<ul><li><strong>Pass by reference</strong> \u2014 modify a caller variable inside a function.</li><li><strong>Dynamic memory</strong> \u2014 allocate at runtime.</li><li><strong>Efficiency</strong> \u2014 pass large data without copying it.</li><li><strong>Data structures</strong> \u2014 linked lists, trees, graphs.</li><li><strong>Low-level control</strong> \u2014 hardware, OS kernels, embedded systems.</li></ul>\n<h3>1.3 \u2014 Pointer types &amp; sizes</h3>\n<p>A pointer\u2019s type tells the compiler how many bytes to read when dereferencing. The pointer itself is always the same size (8 bytes on a 64-bit system).</p>\n<pre class=\"code\"><code>char   *cp;   // dereference reads 1 byte\nint    *ip;   // dereference reads 4 bytes\ndouble *dp;   // dereference reads 8 bytes</code></pre>\n<div class=\"callout\"><h4>Exercises \u2014 Level 1 (Beginner)</h4><ol><li>Write <code>swap(int *a, int *b)</code> that swaps two integers. Test it in <code>main</code>.</li><li>Write <code>increment(int *n)</code> that adds 1 to a number. Print before and after.</li><li>Declare an int, a pointer to it, and a pointer to that pointer (double pointer). Print the value using <code>**</code>.</li></ol></div>\n<details><summary>Show solutions</summary>\n<pre class=\"code\"><code>// 1\nvoid swap(int *a, int *b) {\n    int temp = *a;\n    *a = *b;\n    *b = temp;\n}\n\n// 2\nvoid increment(int *n) { (*n)++; }\n\n// 3\nint x = 5;\nint *p = &amp;x;\nint **pp = &amp;p;\nprintf(&quot;%d\\n&quot;, **pp);  // 5</code></pre>\n</details>\n<h3>1.4 \u2014 Pointers and arrays</h3>\n<p>In C, the array name <em>decays</em> to a pointer to its first element.</p>\n<pre class=\"code\"><code>int arr[5] = {10, 20, 30, 40, 50};\nint *p = arr;          // same as &amp;arr[0]\n\nprintf(&quot;%d\\n&quot;, arr[2]);     // 30\nprintf(&quot;%d\\n&quot;, *(p + 2));   // 30  -- pointer arithmetic\nprintf(&quot;%d\\n&quot;, p[2]);       // 30  -- same thing</code></pre>\n<p>Pointer arithmetic moves by the size of the type: <code>p + 1</code> on an <code>int*</code> moves 4 bytes; on a <code>double*</code> it moves 8.</p>\n<pre class=\"code\"><code>// Iterating an array with a pointer\nfor (int *p = arr; p &lt; arr + 5; p++) {\n    printf(&quot;%d &quot;, *p);\n}</code></pre>\n<h3>1.5 \u2014 Pointers and functions</h3>\n<pre class=\"code\"><code>// Value is copied -- original unchanged\nvoid fail(int x) { x = 99; }\n\n// Pointer -- we modify the original\nvoid succeed(int *x) { *x = 99; }\n\n// Returning a pointer to the caller&#x27;s variable -- OK\nint* safe(int *x) { (*x)++; return x; }\n\n// DANGER -- never do this:\nint* dangerous() {\n    int local = 5;\n    return &amp;local;   // local is destroyed when the function returns!\n}</code></pre>\n<h3>1.6 \u2014 Dynamic memory: malloc, calloc, realloc, free</h3>\n<p>The stack is automatic but limited. The heap lets you allocate at runtime.</p>\n<pre class=\"code\"><code>#include &lt;stdlib.h&gt;\n\n// malloc -- raw bytes, uninitialized\nint *p = malloc(sizeof(int));\n*p = 42;\nfree(p);\n\n// calloc -- allocates and zeroes\nint *arr = calloc(10, sizeof(int));   // 10 ints, all zero\nfree(arr);\n\n// realloc -- resize an allocation\nint *buf = malloc(5 * sizeof(int));\nbuf = realloc(buf, 10 * sizeof(int)); // grow to 10 ints\nfree(buf);</code></pre>\n<p>The golden rules:</p><ul><li>Always check whether <code>malloc</code> returned <code>NULL</code>.</li><li>Every <code>malloc</code> has exactly one <code>free</code>.</li><li>Never use memory after <code>free</code> (use-after-free).</li><li>Never <code>free</code> the same pointer twice (double-free).</li><li>Never return a pointer to a stack variable.</li></ul>\n<pre class=\"code\"><code>int *safe_alloc(int n) {\n    int *p = malloc(n * sizeof(int));\n    if (p == NULL) {\n        fprintf(stderr, &quot;Allocation failed!\\n&quot;);\n        exit(1);\n    }\n    return p;\n}</code></pre>\n<div class=\"callout\"><h4>Exercises \u2014 Level 2 (Intermediate)</h4><ol><li><code>int* create_array(int n)</code> \u2014 allocate an array of n ints, fill with 1..n, return it. Print and free in main.</li><li><code>reverse(int *arr, int n)</code> \u2014 reverse in place using pointer arithmetic (no <code>[]</code>).</li><li><code>char* my_strdup(const char *s)</code> \u2014 allocate, copy the string, return it.</li></ol></div>\n<details><summary>Show solutions</summary>\n<pre class=\"code\"><code>// 1\nint* create_array(int n) {\n    int *arr = malloc(n * sizeof(int));\n    if (!arr) exit(1);\n    for (int i = 0; i &lt; n; i++) arr[i] = i + 1;\n    return arr;\n}\n\n// 2\nvoid reverse(int *arr, int n) {\n    int *left = arr, *right = arr + n - 1;\n    while (left &lt; right) {\n        int temp = *left;\n        *left++ = *right;\n        *right-- = temp;\n    }\n}\n\n// 3\nchar* my_strdup(const char *s) {\n    int len = 0;\n    while (s[len]) len++;\n    char *copy = malloc(len + 1);\n    if (!copy) exit(1);\n    for (int i = 0; i &lt;= len; i++) copy[i] = s[i];\n    return copy;\n}</code></pre>\n</details>\n<h3>1.7 \u2014 Function pointers</h3>\n<p>Functions live in memory too. You can point to them, store them, and pass them.</p>\n<pre class=\"code\"><code>// Syntax: returntype (*name)(param_types)\nint add(int a, int b) { return a + b; }\nint mul(int a, int b) { return a * b; }\n\nint main() {\n    int (*op)(int, int);   // pointer to a function (2 ints -&gt; int)\n    op = add; printf(&quot;%d\\n&quot;, op(3, 4));  // 7\n    op = mul; printf(&quot;%d\\n&quot;, op(3, 4));  // 12\n}</code></pre>\n<p>The practical use is callbacks \u2014 this is exactly how <code>qsort</code> works:</p>\n<pre class=\"code\"><code>void apply(int *arr, int n, int (*fn)(int)) {\n    for (int i = 0; i &lt; n; i++)\n        arr[i] = fn(arr[i]);\n}\n\nint square(int x) { return x * x; }\nint negate(int x) { return -x; }\n// apply(arr, 5, square);</code></pre>\n<h3>1.8 \u2014 The void* pointer</h3>\n<p><code>void*</code> can hold any address but can\u2019t be dereferenced without casting. It\u2019s how C writes generic code.</p>\n<pre class=\"code\"><code>void print_bytes(void *ptr, int n) {\n    unsigned char *p = (unsigned char *)ptr;\n    for (int i = 0; i &lt; n; i++)\n        printf(&quot;%02X &quot;, p[i]);\n    printf(&quot;\\n&quot;);\n}\n\nint x = 0xDEADBEEF;\nprint_bytes(&amp;x, sizeof(x));</code></pre>\n<h2>Part 2 \u00b7 Structs</h2>\n<h3>2.1 \u2014 What is a struct?</h3>\n<p>A struct groups related variables under one name \u2014 a custom type.</p>\n<pre class=\"code\"><code>struct Point {\n    int x;\n    int y;\n};\n\nint main() {\n    struct Point p;             // declare\n    p.x = 10;                  // dot operator\n    p.y = 20;\n    struct Point q = {5, 15};  // initialize\n    printf(&quot;(%d, %d)\\n&quot;, p.x, p.y);\n}</code></pre>\n<p><code>typedef</code> avoids writing <code>struct</code> every time:</p>\n<pre class=\"code\"><code>typedef struct {\n    int x;\n    int y;\n} Point;\n\nPoint p = {10, 20};   // cleaner</code></pre>\n<h3>2.2 \u2014 Structs in memory (padding)</h3>\n<p>Members are laid out in order, but the compiler inserts <strong>padding</strong> for alignment.</p>\n<pre class=\"code\"><code>typedef struct {\n    char   a;   // 1 byte\n    // 3 bytes padding\n    int    b;   // 4 bytes\n    char   c;   // 1 byte\n    // 7 bytes padding\n    double d;   // 8 bytes\n} Padded;       // likely 24 bytes, not 14\n\nprintf(&quot;%zu\\n&quot;, sizeof(Padded));  // probably 24</code></pre>\n<p>Order members largest-to-smallest to minimize padding.</p>\n<h3>2.3 \u2014 Pointers to structs (the arrow operator)</h3>\n<pre class=\"code\"><code>Point p = {10, 20};\nPoint *ptr = &amp;p;\n\nprintf(&quot;%d\\n&quot;, (*ptr).x);  // dereference then dot\nprintf(&quot;%d\\n&quot;, ptr-&gt;x);    // arrow operator (preferred)\n\nptr-&gt;x = 99;               // modify through the pointer</code></pre>\n<h3>2.4 \u2014 Passing structs to functions</h3>\n<pre class=\"code\"><code>typedef struct { float x, y, z; } Vec3;\n\n// BAD for large structs -- copies the whole thing\nfloat length_copy(Vec3 v) {\n    return sqrt(v.x*v.x + v.y*v.y + v.z*v.z);\n}\n\n// BETTER -- pass by pointer (no copy)\nfloat length_ptr(const Vec3 *v) {\n    return sqrt(v-&gt;x*v-&gt;x + v-&gt;y*v-&gt;y + v-&gt;z*v-&gt;z);\n}\n\n// Returning a small struct is fine\nVec3 add(const Vec3 *a, const Vec3 *b) {\n    return (Vec3){a-&gt;x + b-&gt;x, a-&gt;y + b-&gt;y, a-&gt;z + b-&gt;z};\n}</code></pre>\n<p>Use <code>const Vec3 *</code> when you won\u2019t modify \u2014 it documents intent and prevents bugs.</p>\n<div class=\"callout\"><h4>Exercises \u2014 Level 3 (Intermediate-Advanced)</h4><ol><li><code>Rectangle</code> with width/height; write <code>area</code> and <code>perimeter</code> taking <code>const Rectangle *</code>.</li><li><code>Student</code> with <code>name[50]</code>, <code>grade</code>, <code>id</code>; return a pointer to the highest-grade student in an array.</li><li>Allocate 5 <code>Student</code>s, fill them, sort by grade with <code>qsort</code> + a comparator, print them.</li></ol></div>\n<details><summary>Show solutions</summary>\n<pre class=\"code\"><code>// 1\ntypedef struct { float width, height; } Rectangle;\nfloat area(const Rectangle *r)      { return r-&gt;width * r-&gt;height; }\nfloat perimeter(const Rectangle *r) { return 2 * (r-&gt;width + r-&gt;height); }\n\n// 2\ntypedef struct { char name[50]; float grade; int id; } Student;\nStudent* top_student(Student *arr, int n) {\n    Student *top = &amp;arr[0];\n    for (int i = 1; i &lt; n; i++)\n        if (arr[i].grade &gt; top-&gt;grade) top = &amp;arr[i];\n    return top;\n}\n\n// 3\nint cmp_grade(const void *a, const void *b) {\n    const Student *sa = a, *sb = b;\n    return (sa-&gt;grade &lt; sb-&gt;grade) - (sa-&gt;grade &gt; sb-&gt;grade); // descending\n}\n// qsort(students, 5, sizeof(Student), cmp_grade);</code></pre>\n</details>\n<h2>Part 3 \u00b7 Combining structs &amp; pointers</h2>\n<h3>3.1 \u2014 Linked lists</h3>\n<p>The classic structure that needs both \u2014 a self-referential struct.</p>\n<pre class=\"code\"><code>typedef struct Node {\n    int data;\n    struct Node *next;   // pointer to the same type\n} Node;\n\nNode* new_node(int val) {\n    Node *n = malloc(sizeof(Node));\n    n-&gt;data = val;\n    n-&gt;next = NULL;\n    return n;\n}\n\nNode* prepend(Node *head, int val) {\n    Node *n = new_node(val);\n    n-&gt;next = head;\n    return n;\n}\n\nvoid print_list(Node *head) {\n    while (head) { printf(&quot;%d -&gt; &quot;, head-&gt;data); head = head-&gt;next; }\n    printf(&quot;NULL\\n&quot;);\n}\n\nvoid free_list(Node *head) {\n    while (head) { Node *t = head; head = head-&gt;next; free(t); }\n}</code></pre>\n<h3>3.2 \u2014 Pointer-to-pointer for list modification</h3>\n<p>Using <code>Node**</code> lets a function modify the head pointer itself \u2014 and removes the special case for deleting the first node.</p>\n<pre class=\"code\"><code>void append(Node **head, int val) {\n    Node *n = new_node(val);\n    if (!*head) { *head = n; return; }\n    Node *curr = *head;\n    while (curr-&gt;next) curr = curr-&gt;next;\n    curr-&gt;next = n;\n}\n\nvoid delete_val(Node **head, int val) {\n    Node **curr = head;\n    while (*curr) {\n        if ((*curr)-&gt;data == val) {\n            Node *tmp = *curr;\n            *curr = (*curr)-&gt;next;\n            free(tmp);\n            return;\n        }\n        curr = &amp;(*curr)-&gt;next;\n    }\n}</code></pre>\n<h3>3.3 \u2014 Nested &amp; complex structures</h3>\n<pre class=\"code\"><code>typedef struct { char street[100]; char city[50]; int zip; } Address;\n\ntypedef struct {\n    char    name[50];\n    int     age;\n    Address addr;        // embedded struct\n    Address *work_addr;  // pointer to struct\n} Person;\n\nPerson p = {\n    .name = &quot;Alice&quot;,\n    .age  = 30,\n    .addr = {&quot;123 Main St&quot;, &quot;Springfield&quot;, 12345}\n};\n\nprintf(&quot;%s\\n&quot;, p.addr.city);\nprintf(&quot;%s\\n&quot;, p.work_addr-&gt;city);  // if allocated</code></pre>\n<h3>3.4 \u2014 Opaque pointers &amp; encapsulation</h3>\n<p>Hide implementation details, like C++ private members:</p>\n<pre class=\"code\"><code>// stack.h\ntypedef struct Stack Stack;   // incomplete type -- internals hidden\nStack* stack_create();\nvoid   stack_push(Stack *s, int val);\nint    stack_pop(Stack *s);\nvoid   stack_destroy(Stack *s);\n\n// stack.c -- full definition only here\nstruct Stack { int *data; int top; int capacity; };\n\nStack* stack_create() {\n    Stack *s = malloc(sizeof(Stack));\n    s-&gt;data = malloc(16 * sizeof(int));\n    s-&gt;top = 0; s-&gt;capacity = 16;\n    return s;\n}\n\nvoid stack_push(Stack *s, int val) {\n    if (s-&gt;top == s-&gt;capacity) {\n        s-&gt;capacity *= 2;\n        s-&gt;data = realloc(s-&gt;data, s-&gt;capacity * sizeof(int));\n    }\n    s-&gt;data[s-&gt;top++] = val;\n}</code></pre>\n<div class=\"callout\"><h4>Exercises \u2014 Level 4 (Advanced)</h4><ol><li>Doubly linked list with <code>data</code>, <code>prev</code>, <code>next</code> \u2014 append, prepend, delete, print_forward/backward.</li><li>Generic dynamic array using <code>void*</code>: <code>vec_init</code>, <code>vec_push</code>, <code>vec_get</code>, <code>vec_free</code>.</li><li>Binary search tree with insert, search, and inorder traversal.</li></ol></div>\n<h3>3.5 \u2014 Common pointer bugs</h3>\n<table><thead><tr><th>Bug</th><th>Description</th><th>Detection</th></tr></thead><tbody><tr><td>Null dereference</td><td><code>*p</code> when <code>p == NULL</code></td><td>Always check the malloc return</td></tr><tr><td>Dangling pointer</td><td>Accessing freed memory</td><td>Set <code>p = NULL</code> after free</td></tr><tr><td>Buffer overflow</td><td>Writing past array bounds</td><td>valgrind, AddressSanitizer</td></tr><tr><td>Memory leak</td><td><code>malloc</code> without <code>free</code></td><td>valgrind --leak-check=full</td></tr><tr><td>Double free</td><td><code>free(p)</code> twice</td><td>Set <code>p = NULL</code> after free</td></tr><tr><td>Stack overflow</td><td>Too-deep recursion</td><td>Watch recursion depth</td></tr></tbody></table>\n<p>Compile with maximum safety:</p>\n<pre class=\"code\"><code>gcc -Wall -Wextra -fsanitize=address,undefined -g program.c</code></pre>\n<h2>Part 4 \u00b7 Expert</h2>\n<h3>4.1 \u2014 Casting, aliasing &amp; type punning</h3>\n<pre class=\"code\"><code>// Inspect the bytes of any value\nfloat f = 3.14f;\nunsigned char *bytes = (unsigned char*)&amp;f;\nfor (int i = 0; i &lt; sizeof(f); i++)\n    printf(&quot;%02X &quot;, bytes[i]);\n\n// Safe type punning via a union (avoid strict-aliasing UB)\ntypedef union { float f; uint32_t u; } FloatBits;\nFloatBits fb = { .f = 3.14f };\nprintf(&quot;%08X\\n&quot;, fb.u);   // raw bits of the float</code></pre>\n<h3>4.2 \u2014 Multidimensional &amp; pointer arrays</h3>\n<pre class=\"code\"><code>// 2D array -- contiguous in memory\nint matrix[3][4];\nint (*row_ptr)[4] = matrix;   // pointer to an array of 4 ints\n\n// Array of pointers -- rows can have different lengths (jagged)\nint *rows[3];\nrows[0] = malloc(2 * sizeof(int));\nrows[1] = malloc(5 * sizeof(int));\nrows[2] = malloc(3 * sizeof(int));</code></pre>\n<h3>4.3 \u2014 Const correctness</h3>\n<pre class=\"code\"><code>int x = 5;\nconst int *p = &amp;x;        // can&#x27;t change *p, can change p\nint * const q = &amp;x;       // can change *q, can&#x27;t change q\nconst int * const r = &amp;x; // can change neither\n// Read right-to-left: &quot;r is a const pointer to const int&quot;</code></pre>" }
+];
+
+function buildConceptsList() {
+  const wrap = document.createElement('div');
+  wrap.id = 'concepts';
+  const cards = CONCEPTS.map(function(c) {
+    return '<button class="lesson-card" data-id="' + c.id + '">' +
+      '<div class="lesson-card-title">' + c.title + '</div>' +
+      '<div class="lesson-card-blurb">' + c.blurb + '</div>' +
+      '<span class="lesson-card-go">Open refresher \u2192</span>' +
+    '</button>';
+  }).join('');
+  wrap.innerHTML =
+    '<div class="section-header">' +
+      '<div class="section-icon" style="background:var(--tag-bg)"><i class="ti ti-book-2" style="color:var(--ember);font-size:17px" aria-hidden="true"></i></div>' +
+      '<h2>C Concepts</h2>' +
+      '<span class="section-badge">' + CONCEPTS.length + ' refresher' + (CONCEPTS.length > 1 ? 's' : '') + '</span>' +
+    '</div>' +
+    '<p class="concepts-intro">Long-form refreshers for the core C topics interviewers probe. Read end to end, or jump to the part you need \u2014 no timer, no grading, just the fundamentals.</p>' +
+    '<div class="lesson-cards">' + cards + '</div>';
+  wrap.querySelectorAll('.lesson-card').forEach(function(b) {
+    b.onclick = function() { openLesson(b.getAttribute('data-id')); };
+  });
+  return wrap;
+}
+
+function openLesson(id) {
+  const c = CONCEPTS.find(function(x) { return x.id === id; });
+  if (!c) return;
+  const el = document.getElementById('lesson');
+  el.innerHTML =
+    '<button class="lesson-back" id="lesson-back">\u2190 Back to C Concepts</button>' +
+    '<div class="pr-cat">C Concepts</div>' +
+    '<h1 class="lesson-title">' + c.title + '</h1>' +
+    '<article class="lesson-body">' + c.html + '</article>';
+  document.getElementById('app').classList.add('reading');
+  window.scrollTo(0, 0);
+  document.getElementById('lesson-back').onclick = closeLesson;
+}
+
+function closeLesson() {
+  document.getElementById('app').classList.remove('reading');
+  render();
+  window.scrollTo(0, 0);
+}
 
 function saveState() {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(done)); } catch(e) {}
@@ -607,18 +669,30 @@ function buildSidebar() {
   sb.innerHTML = '<div class="sidebar-title">Categories</div>';
 
   const allBtn = document.createElement('button');
-  allBtn.className = 'cat-btn' + (activeCategory === 'all' ? ' active' : '');
+  allBtn.className = 'cat-btn' + (activeView === 'topics' && activeCategory === 'all' ? ' active' : '');
   allBtn.innerHTML = 'All topics <span class="cat-count">' + totalItems() + '</span>';
-  allBtn.onclick = function() { activeCategory = 'all'; render(); };
+  allBtn.onclick = function() { activeView = 'topics'; activeCategory = 'all'; render(); };
   sb.appendChild(allBtn);
 
   Object.entries(DATA).forEach(function([name, cat]) {
     const btn = document.createElement('button');
-    btn.className = 'cat-btn' + (activeCategory === name ? ' active' : '');
+    btn.className = 'cat-btn' + (activeView === 'topics' && activeCategory === name ? ' active' : '');
     btn.innerHTML = name + ' <span class="cat-count">' + cat.items.length + '</span>';
-    btn.onclick = function() { activeCategory = name; render(); };
+    btn.onclick = function() { activeView = 'topics'; activeCategory = name; render(); };
     sb.appendChild(btn);
   });
+
+  const refLabel = document.createElement('div');
+  refLabel.className = 'sidebar-title';
+  refLabel.style.marginTop = '1.4rem';
+  refLabel.textContent = 'Refreshers';
+  sb.appendChild(refLabel);
+
+  const cBtn = document.createElement('button');
+  cBtn.className = 'cat-btn' + (activeView === 'concepts' ? ' active' : '');
+  cBtn.innerHTML = 'C Concepts <span class="cat-count">' + CONCEPTS.length + '</span>';
+  cBtn.onclick = function() { activeView = 'concepts'; render(); };
+  sb.appendChild(cBtn);
 }
 
 function matchesFilter(cat, item, idx) {
@@ -702,6 +776,15 @@ function render() {
   const noResults = document.getElementById('no-results');
 
   content.querySelectorAll('.section').forEach(function(s) { s.remove(); });
+  const oldConcepts = document.getElementById('concepts');
+  if (oldConcepts) oldConcepts.remove();
+
+  if (activeView === 'concepts') {
+    noResults.style.display = 'none';
+    content.appendChild(buildConceptsList());
+    updateDoneStat();
+    return;
+  }
 
   let offset = 0;
   let anyVisible = false;
@@ -722,7 +805,7 @@ function render() {
 
 document.getElementById('search-input').addEventListener('input', function(e) {
   searchQuery = e.target.value.trim();
-  if (searchQuery) activeCategory = 'all';
+  if (searchQuery) { activeCategory = 'all'; activeView = 'topics'; }
   render();
 });
 
