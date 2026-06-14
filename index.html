@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title> The Embedded Forge </title>
+<title> CoreForge </title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Press+Start+2P&display=swap" rel="stylesheet" />
@@ -281,8 +281,8 @@
 <div id="app">
   <header class="hero">
     <div class="hero-eyebrow"><span class="spark"></span>Systems &amp; embedded interview prep</div>
-    <h1>The Embedded <span>Forge</span></h1>
-    <p>A guided forge for low-level interview prep — drill the concepts, reason on the whiteboard, and write real C, C++ and Rust under interview heat.</p>
+    <h1>Core<span>Forge</span></h1>
+    <p>A guided forge for low-level interview prep - drill the concepts, reason on the whiteboard, and write real C, C++ and Rust under interview heat.</p>
     <div class="stats-row" id="stats-row"></div>
     <div class="forge-progress">
       <div class="fp-track"><div class="fp-fill" id="hero-progress"></div></div>
@@ -328,10 +328,10 @@ const DATA = {
         prompt: "Given the head of a singly linked list, determine whether it contains a cycle. Aim for O(n) time and O(1) space.",
         hints: [
           "A hash set of visited nodes works but costs O(n) space. Can you detect a loop without remembering every node?",
-          "Picture two runners on a circular track at different speeds — the faster one eventually laps the slower one. Apply that to pointers.",
+          "Picture two runners on a circular track at different speeds - the faster one eventually laps the slower one. Apply that to pointers.",
           "Floyd's algorithm: a slow pointer moves one step, a fast pointer two. If they ever meet, there's a cycle; if fast hits null, there isn't."
         ],
-        solution: "Floyd's tortoise and hare: advance slow by 1 and fast by 2 each step. If fast or fast->next becomes null, no cycle. If slow == fast, there's a cycle. O(n) time, O(1) space.\n\nFollow-up (your next topic): find the node where the cycle begins — reset one pointer to head and advance both by 1; they meet at the cycle start." },
+        solution: "Floyd's tortoise and hare: advance slow by 1 and fast by 2 each step. If fast or fast->next becomes null, no cycle. If slow == fast, there's a cycle. O(n) time, O(1) space.\n\nFollow-up (your next topic): find the node where the cycle begins - reset one pointer to head and advance both by 1; they meet at the cycle start." },
       { text: "Return the node where a cycle begins" },
       { text: "Find the node where two linked lists intersect" },
       { text: "Remove Nth node from end of the list" },
@@ -342,7 +342,7 @@ const DATA = {
           "Track three pointers as you walk: previous, current, and the saved next. Lose any one and you either lose the rest of the list or can't link backwards.",
           "Loop: save next = cur.next; cur.next = prev; prev = cur; cur = next. When cur is null, prev is the new head."
         ],
-        solution: "Iterative, O(1) space:\n\n  Node* reverse(Node* head) {\n      Node *prev = nullptr, *cur = head;\n      while (cur) { Node* next = cur->next; cur->next = prev; prev = cur; cur = next; }\n      return prev;\n  }\n\nRecursive version reverses the rest, then fixes head->next->next = head and head->next = nullptr — O(n) stack space. Expect the follow-up to reverse in groups of K." },
+        solution: "Iterative, O(1) space:\n\n  Node* reverse(Node* head) {\n      Node *prev = nullptr, *cur = head;\n      while (cur) { Node* next = cur->next; cur->next = prev; prev = cur; cur = next; }\n      return prev;\n  }\n\nRecursive version reverses the rest, then fixes head->next->next = head and head->next = nullptr - O(n) stack space. Expect the follow-up to reverse in groups of K." },
       { text: "Remove linked list elements of a given value" },
       { text: "Group all odd and even nodes together in order" },
       { text: "Palindrome linked list" },
@@ -365,12 +365,12 @@ const DATA = {
       { text: "Diagonal traverse and print" },
       { text: "Spiral matrix" },
       { text: "Implement strstr()" },
-      { text: "Two pointer technique — reverse string, array partition" },
-      { text: "Two pointer fast/slow — remove element, max consecutive 1s, min subarray sum, rotate array" },
+      { text: "Two pointer technique - reverse string, array partition" },
+      { text: "Two pointer fast/slow - remove element, max consecutive 1s, min subarray sum, rotate array" },
       { text: "Reverse words in a string (word-by-word, within-word)" },
       { text: "Remove duplicates from sorted array" },
       { text: "Move all zeroes to the end" },
-      { text: "Max subarray sum — DP" },
+      { text: "Max subarray sum - DP" },
       { text: "Find K closest elements to a given value" },
     ]
   },
@@ -379,7 +379,7 @@ const DATA = {
     color: "#C0440A",
     iconBg: "rgba(192,68,10,0.1)",
     items: [
-      { text: "2 Sum — return indices adding to target" },
+      { text: "2 Sum - return indices adding to target" },
       { text: "4 Sum" },
       { text: "Find all duplicates" },
       { text: "Intersection of 2 arrays" },
@@ -391,11 +391,11 @@ const DATA = {
       { text: "LRU cache",
         prompt: "Design a cache with a fixed capacity supporting get(key) and put(key, value), both O(1). When full, evict the least recently used entry.",
         hints: [
-          "You need two things at once: O(1) lookup by key, and O(1) knowledge of what's least recently used. One structure can't do both well — combine two.",
+          "You need two things at once: O(1) lookup by key, and O(1) knowledge of what's least recently used. One structure can't do both well - combine two.",
           "A hash map gives O(1) lookup. A doubly linked list ordered by recency gives O(1) move-to-front and O(1) eviction from the back.",
           "The map stores key -> list node. On access, unlink the node and move it to the front. On insert when full, drop the tail node and erase its key from the map."
         ],
-        solution: "Hash map (key -> node) + doubly linked list ordered most-to-least recently used. get: look up node, move to front, return value. put: if present, update and move to front; else insert at front and, if over capacity, evict the tail and erase its key. Every operation is O(1).\n\nThis is the canonical 'combine two structures' problem — interviewers want to see you reach for the list to track recency." },
+        solution: "Hash map (key -> node) + doubly linked list ordered most-to-least recently used. get: look up node, move to front, return value. put: if present, update and move to front; else insert at front and, if over capacity, evict the tail and erase its key. Every operation is O(1).\n\nThis is the canonical 'combine two structures' problem - interviewers want to see you reach for the list to track recency." },
       { text: "Ransom Note" },
       { text: "Insert Delete GetRandom O(1)" },
       { text: "Design Hashmap" },
@@ -431,11 +431,11 @@ const DATA = {
       { text: "Circular (Ring) buffer",
         prompt: "Implement a fixed-capacity circular buffer for a single producer and single consumer: push returns false if full, pop returns false if empty. No dynamic allocation.",
         hints: [
-          "Use a fixed array plus a head and a tail index. The hard part is telling 'completely full' from 'completely empty' — both can look like head == tail.",
+          "Use a fixed array plus a head and a tail index. The hard part is telling 'completely full' from 'completely empty' - both can look like head == tail.",
           "Two common fixes: keep a separate count, or leave one slot always empty so full is (head + 1) % cap == tail. Pick one and stay consistent.",
           "With a count: push writes at head, advances head modulo capacity, increments count; pop reads at tail, advances tail, decrements count. Full is count == cap, empty is count == 0."
         ],
-        solution: "Array + head + tail + count. Push at head, pop at tail; both indices wrap with modulo (or a branch, cheaper than % on small MCUs). The count disambiguates full vs empty.\n\nFollow-up: make it safe across two threads/contexts. For single-producer/single-consumer you can drop the lock if head and tail are each written by only one side, using acquire/release memory ordering — the lock-free version." },
+        solution: "Array + head + tail + count. Push at head, pop at tail; both indices wrap with modulo (or a branch, cheaper than % on small MCUs). The count disambiguates full vs empty.\n\nFollow-up: make it safe across two threads/contexts. For single-producer/single-consumer you can drop the lock if head and tail are each written by only one side, using acquire/release memory ordering - the lock-free version." },
       { text: "Design Hit Counter" },
     ]
   },
@@ -510,7 +510,7 @@ const DATA = {
           "Second problem: the value is multi-byte, so the main loop can read it half-updated if the interrupt fires mid-read. That's atomicity, separate from visibility.",
           "volatile fixes visibility (forces a reload). For atomicity of a multi-byte value, briefly disable the interrupt around the read (a short critical section), use a single-word atomic, or a sequence-counter/double-buffer scheme."
         ],
-        solution: "Two distinct issues. Visibility: mark the shared variable volatile so the compiler reloads it on every access. Atomicity: a multi-byte read can tear if the ISR fires mid-read, so guard the main-loop access with a short critical section (disable the relevant interrupt, copy, re-enable), use an atomic word, or a sequence counter the reader re-checks. volatile alone does NOT give atomicity — a very common misconception. const is a compiler-enforced promise, not storage; pragmas/preprocessor are compile-time directives, unrelated to runtime visibility." },
+        solution: "Two distinct issues. Visibility: mark the shared variable volatile so the compiler reloads it on every access. Atomicity: a multi-byte read can tear if the ISR fires mid-read, so guard the main-loop access with a short critical section (disable the relevant interrupt, copy, re-enable), use an atomic word, or a sequence counter the reader re-checks. volatile alone does NOT give atomicity - a very common misconception. const is a compiler-enforced promise, not storage; pragmas/preprocessor are compile-time directives, unrelated to runtime visibility." },
       { text: "Fine-grained vs coarse-grained multithreading" },
       { text: "Virtual memory, paging, thread vs process" },
       { text: "Implement mutex using test-and-set, load-linked & store-conditional" },
@@ -518,18 +518,18 @@ const DATA = {
       { text: "Reader-writer mutex" },
       { text: "Producer-consumer problem" },
       { text: "Strict padding alignment" },
-      { text: "Endianness — detect endianness, convert big ↔ little endian" },
+      { text: "Endianness - detect endianness, convert big ↔ little endian" },
       { text: "Implement memcpy, memmove, strstr, strcpy, atoi, malloc, free" },
       { text: "Aligned malloc" },
       { text: "VIPT, TLBs, page faults" },
       { text: "Interrupts, exceptions, deadlocks, priority inversion and inheritance",
         prompt: "A high-priority task is blocked on a resource held by a low-priority task, which gets preempted by a medium-priority task. The high task misses its deadline. Name this and explain the fix.",
         hints: [
-          "Trace the priorities: high is stuck behind low (fine, briefly), but medium runs ahead of low — so low never releases the resource. Who's effectively blocking high?",
+          "Trace the priorities: high is stuck behind low (fine, briefly), but medium runs ahead of low - so low never releases the resource. Who's effectively blocking high?",
           "The medium task, unrelated to the resource, is indirectly starving the highest-priority task. This is a known, named hazard.",
           "It's priority inversion. The standard fix is priority inheritance: while low holds a resource a higher task needs, it temporarily inherits that higher priority so medium can't preempt it. Priority ceiling is the alternative."
         ],
-        solution: "Priority inversion: a medium task indirectly blocks a high task by preempting the low task that holds the shared resource. Fix with priority inheritance — the holder temporarily runs at the priority of its highest waiter, so unrelated medium tasks can't preempt it and it releases promptly. The 1997 Mars Pathfinder resets were a real instance, fixed by enabling priority inheritance on a mutex. Knowing that story signals real domain depth in defense/aerospace loops." },
+        solution: "Priority inversion: a medium task indirectly blocks a high task by preempting the low task that holds the shared resource. Fix with priority inheritance - the holder temporarily runs at the priority of its highest waiter, so unrelated medium tasks can't preempt it and it releases promptly. The 1997 Mars Pathfinder resets were a real instance, fixed by enabling priority inheritance on a mutex. Knowing that story signals real domain depth in defense/aerospace loops." },
       { text: "HW breakpoint vs SW breakpoint" },
       { text: "SPI vs UART vs I2C" },
       { text: "Matrix multiplication, cache blocking, tiling, GEMM, matrix rotation" },
@@ -552,7 +552,7 @@ const DATA = {
     iconBg: "rgba(160,122,0,0.1)",
     items: [
       { text: "new and delete operators" },
-      { text: "OOP theory — abstraction, inheritance, polymorphism, encapsulation" },
+      { text: "OOP theory - abstraction, inheritance, polymorphism, encapsulation" },
       { text: "Inline functions" },
       { text: "Virtual functions, vptr and vtable" },
       { text: "Friend class and function" },
@@ -941,14 +941,14 @@ function openPractice(catName, item, key) {
     '</div>' +
     hintsHtml +
     '<div class="pr-wb-label">Your whiteboard</div>' +
-    '<textarea class="pr-wb" id="pr-wb" placeholder="No autocomplete, no syntax help — just like the real thing."></textarea>' +
+    '<textarea class="pr-wb" id="pr-wb" placeholder="No autocomplete, no syntax help - just like the real thing."></textarea>' +
     ideHtml +
     '<div class="pr-actions">' +
       '<button class="pr-btn ' + (isDone ? 'is-done' : 'primary') + '" id="pr-done">' + (isDone ? '\u2713 Marked complete' : 'Mark complete') + '</button>' +
       '<button class="pr-btn" id="pr-reveal">Reveal full solution</button>' +
     '</div>' +
     '<div class="pr-solution" id="pr-solution"><div class="pr-solution-inner"><h3>Solution &amp; what they\'re testing</h3>' + solBody + '</div></div>' +
-    '<p class="pr-note">Hints unlock at 10, 20 and 30 minutes — change HINT_UNLOCKS in the script to adjust. AI grading of the whiteboard needs a backend, so it isn\'t wired in here yet.</p>';
+    '<p class="pr-note">Hints unlock at 10, 20 and 30 minutes - change HINT_UNLOCKS in the script to adjust. AI grading of the whiteboard needs a backend, so it isn\'t wired in here yet.</p>';
 
   document.getElementById('app').classList.add('practicing');
   window.scrollTo(0, 0);
@@ -1036,7 +1036,7 @@ function openPractice(catName, item, key) {
         statusEl.textContent = isErr ? 'exit ' + (run.code != null ? run.code : '1') : 'done';
       } catch (err) {
         outEl.classList.add('err');
-        outEl.textContent = "Couldn't reach the code runner. It's a free public service (Piston) and may be rate-limited or blocked on your network — try again in a moment, or self-host Piston / use Judge0 for production.";
+        outEl.textContent = "Couldn't reach the code runner. It's a free public service (Piston) and may be rate-limited or blocked on your network - try again in a moment, or self-host Piston / use Judge0 for production.";
         statusEl.textContent = 'error';
       } finally {
         runBtn.disabled = false;
