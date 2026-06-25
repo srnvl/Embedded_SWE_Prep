@@ -1,4 +1,4 @@
-Update - Currently building Forja Cero (Link: https://forjacero.xyz/) - A platform for systems & embedded interview prep.
+*Update - Currently building Forja Cero (Link: https://forjacero.xyz/) - A platform for systems & embedded interview prep.
 Still a work in progress, but the forge is open.😉
 
 
