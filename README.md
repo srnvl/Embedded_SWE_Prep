@@ -1,5 +1,3 @@
-# The Embedded Forge
-
 List of commonly asked questions for Embedded SW Engineering interviews.
 
 I am also linking the problems from Grind75(https://www.techinterviewhandbook.org/grind75?order=difficulty&grouping=topics&hours=40&weeks=3&difficulty=Easy&difficulty=Medium)
